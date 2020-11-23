@@ -1,0 +1,285 @@
+:root {
+  --d-blue: #13233e;
+  --m-blue: #26357d;
+  --d-purple: #452F75;
+  --purple: #6846af;
+  --l-purple: #B8A7DC;
+  --d-magenta: #BB257D;
+  --magenta: #db4a9f;
+  --d-green: #59D9B1;
+  --green: #9ae8cf;
+  --white: #DEF7F0;
+  --b-purple: #340925;
+}
+
+body {
+  background-attachment: fixed;
+  background-image: linear-gradient(to bottom, var(--d-blue) 50%, var(--m-blue));
+  background-repeat: no-repeat;
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  color: var(--magenta);
+  font-family: 'Audiowide', sans-serif;
+  font-size: 3.5rem;
+  line-height: 3.25rem;
+  margin: 15px 10%;
+  text-transform: uppercase;
+}
+
+h3 {
+  color: var(--magenta);
+  font-family: 'Audiowide', sans-serif;
+  font-size: 2.25rem;
+  line-height: 2rem;
+  margin: 0 3% 10px;
+  text-transform: uppercase;
+}
+
+h4 {
+  color: var(--d-purple);
+  display: inline-block;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  padding: 13px;
+}
+
+/* Title*/
+.title-container {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 75%;
+}
+
+/* Scoreboards */
+.btn-sm {
+  height: 2rem;
+  width: 2rem;
+}
+
+.board-header {
+  margin: 0 auto 10px;
+  height: 4rem;
+  width: 75%;
+}
+
+.player, .computer {
+  color: var(--d-purple);
+  width: 4rem;
+}
+
+.score {
+  color: var(--white);
+}
+
+.score-btn, .score-btn-b {
+  background-color: var(--purple);
+  box-shadow: none;
+}
+
+.score-btn:hover, .score-btn-b:hover {
+  background-color: var(--d-purple);
+}
+
+.scoreboard-container {
+  background-color: var(--l-purple);
+  box-shadow: -5px 7px 5px hsla(0, 0%, 0%, 0.25);
+  margin: 1.5% .5rem 0.75rem;
+  padding: 10px 5px 5px;
+}
+
+.scoreboard-row {
+  margin: auto;
+  text-align: center;
+}
+
+.score-row {
+  height: 45px;
+}
+
+.table {
+  background-color: var(--d-purple);
+  border-color: var(--l-purple);
+  margin: 0 auto;
+}
+
+.table td, .table th {
+  padding: .25rem .5rem;
+  vertical-align: middle;
+}
+
+table .hold {
+  font-weight: bold;
+}
+
+/* Dice Control*/
+.btn-dark {
+  background-color: var(--magenta);
+  border: 1px solid var(--b-purple);
+  border-radius: 0;
+  box-shadow: -2px 4px 3px hsla(0, 0%, 0%, .25);
+  color: var(--white);
+  margin: 3%;
+}
+
+.lite {
+  background-color: var(--l-purple) !important;
+}
+
+.btn-dark:hover {
+  background-color: var(--d-magenta);
+  border: 1px solid var(--b-purple);
+}
+
+.container-dice {
+  padding: 0 2rem 1rem;
+  text-align: center;
+}
+
+.container-dice .btn-dark {
+  font-size: 1.5rem;
+  margin: 0 2% 2%;
+  width: 10rem;
+}
+
+.dice {
+  color: var(--green);
+  font-size: 85px;
+  padding: 0 5px;
+}
+
+.dice:hover {
+  color: var(--d-green);
+  cursor: pointer;
+}
+
+.hold {
+  color: var(--magenta) !important;
+}
+
+
+.hold:hover {
+  color: var(--d-magenta) !important;
+}
+
+button.hold {
+  background-color: var(--d-blue) !important;
+}
+
+button.hold:hover {
+  background-color: var(--d-blue) !important;
+  cursor: not-allowed !important;
+}
+
+/* Message Box */
+.message {
+  background: rgba(38, 53, 125, 0.75);
+  backdrop-filter: blur(2px);
+  border: 1px solid var(--l-purple);
+  box-shadow: -3px 5px 5px hsla(0, 0%, 0%, 0.25);
+  color: var(--white);
+  display: none;
+  font-size: 1.25rem;
+  height: 225px;
+  margin: auto;
+  padding:50px 15px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  z-index: 1;
+}
+
+@media (min-width: 576px) {
+  .col-sm-5 {
+    max-width: 100%;
+  }
+
+}
+
+@media screen and (max-width:479px) {
+  h1{
+    font-size: 1.25rem;
+    margin: 5px;
+    line-height: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 5px;
+  }
+
+  h4 {
+    font-size: 0.85rem;
+    line-height: 0.85rem;
+    padding: 13px 13px 0;
+  }
+
+  body {
+    font-size: 0.85rem;
+    line-height: 1rem;
+  }
+
+  .board-header {
+    margin: 0 auto 5px;
+    height: 2.5rem;
+    width: 75%;
+  }
+
+  .btn-sm {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .col-sm-2, .col-2 {
+    padding: 0;
+  }
+
+  .container-dice .btn-dark {
+    font-size: 1.25rem;
+    margin: 0 2% 2%;
+    padding: 0.25rem 0.75rem;
+    width: auto;
+  }
+
+  .player, .computer {
+    width: 2.25rem;
+    margin: 0 auto;
+  }
+
+  .dice {
+    font-size: 45px;
+  }
+
+  
+
+  .score-row {
+    height: 2rem;
+  }
+
+  .comp-score .score-row {
+    height: 1.5rem;
+  }
+
+  .scoreboard-container {
+    margin: 5px 0.5rem;
+    padding: 5px 10px 5px;
+  }
+
+  .table td {
+    padding: 3px 0.5rem;
+  }
+  
+
+}

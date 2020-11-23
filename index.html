@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Space Yahtzee!!!</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/04aca8327c.js" crossorigin="anonymous"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="message">
+    <p>
+    </p>
+  </div>
+  <div class="container">
+    <div class="title-container">
+      <h1>Space Yahtzee!</h1>
+      <h3 id="winner">Round: <span class="round-num">0</span></h3>
+    </div>
+
+    <!-- Player & Computer Icons & Scoreboards -->
+    <div class="row scoreboard-row justify-content-center">
+      <!-- Player scoreboard -->
+      <div class="col-xl-5 scoreboard-container">
+        <div class="board-header">
+          <img src="img/icon_Player1.svg" class="player">
+        <h4>Player 1</h4>
+        </div>
+        <table class="table score">
+          <tbody>
+            <tr class="score-row">
+              <!-- 1's -->
+              <td>
+                <button type="button" id="p-btn-1" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>1's</th>
+              <td class="score-val">0</td>
+              <!-- 3 of a kind -->
+              <td>
+                <button type="button" id="p-btn-3x" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th>3x</th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 2's -->
+              <td>
+                <button type="button" id="p-btn-2" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>2's</th>
+              <td class="score-val">0</td>
+              <!-- 4 of a kind -->
+              <td>
+                <button type="button" id="p-btn-4x" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th>4x</th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 3's -->
+              <td>
+                <button type="button" id="p-btn-3" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>3's</th>
+              <td class="score-val">0</td>
+              <!-- Full house -->
+              <td>
+                <button type="button" id="p-btn-fh" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th><i class="fas fa-home fa-2x"></i></th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 4's -->
+              <td>
+                <button type="button" id="p-btn-4" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>4's</th>
+              <td class="score-val">0</td>
+              <!-- Small straight -->
+              <td>
+                <button type="button" id="p-btn-ss" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th>Sm Straight</th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 5's -->
+              <td>
+                <button type="button" id="p-btn-5" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>5's</th>
+              <td class="score-val">0</td>
+              <!-- Large Straight -->
+              <td>
+                <button type="button" id="p-btn-ls" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th>Lg Straight</th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 6's -->
+              <td>
+                <button type="button" id="p-btn-6" class="btn btn-dark btn-sm score-btn"> + </buttonscore-btn>
+              </td>
+              <th>6's</th>
+              <td class="score-val">0</td>
+              <!-- Any Combo -->
+              <td>
+                <button type="button" id="p-btn-any" class="btn btn-dark btn-sm score-btn-b"> + </button>
+              </td>
+              <th>Any Combo</th>
+              <td class="score-val-b">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- Yahtzee -->
+              <td>
+                <button type="button" id="p-btn-yahtzee" class="btn btn-dark btn-sm score-btn"> + </button>
+              </td>
+              <th>Yahtzee!</th>
+              <td class="score-val">0</td>
+              <!-- Computer TOTAL SCORE -->
+              <td></td>
+              <th>Total:</th>
+              <td id="total">0</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Computer Scoreboard -->
+      <div class="col-xl-5 scoreboard-container comp-score">
+        <div class="board-header">
+          <img src="img/icon_Computer.svg" class="computer">
+        <h4>Computer</h4>
+        </div>
+        <table class="table score">
+          <tbody>
+            <tr class="score-row">
+              <!-- 1's -->
+              <td>
+              </td>
+              <th>1's</th>
+              <td id="c-one" class="comp-score-val">0</td>
+              <!-- 3 of a kind -->
+              <td>
+              </td>
+              <th>3x</th>
+              <td id="c-threex" class="comp-score-val">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 2's -->
+              <td></td>
+              <th>2's</th>
+              <td id="c-two" class="comp-score-val">0</td>
+              <!-- 4 of a kind -->
+              <td></td>
+              <th>4x</th>
+              <td id="c-fourx" class="comp-score-val">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 3's -->
+              <td></td>
+              <th>3's</th>
+              <td id="c-three" class="comp-score-val">0</td>
+              <!-- Full house -->
+              <td></td>
+              <th><i class="fas fa-home fa-2x"></i></th>
+              <td id="c-fh" class="comp-score-val">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 4's -->
+              <td></td>
+              <th>4's</th>
+              <td id="c-four" class="comp-score-val">0</td>
+              <!-- Small straight -->
+              <td></td>
+              <th>Sm Straight</th>
+              <td id="c-ss" class="comp-score-val">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 5's -->
+              <td></td>
+              <th>5's</th>
+              <td id="c-five" class="comp-score-val">0</td>
+              <!-- Large Straight -->
+              <td></td>
+              <th>Lg Straight</th>
+              <td id="c-ls" class="comp-score-val">0</td>
+            </tr>
+
+            <tr class="score-row">
+              <!-- 6's -->
+              <td></td>
+              <th>6's</th>
+              <td id="c-six" class="comp-score-val">0</td>
+              <!-- Any Combo -->
+              <td></td>
+              <th>Any Combo</th>
+              <td id="c-any" class="comp-score-val">0</td>
+            </tr>
+            <tr class="score-row">
+              <!-- Yahtzee -->
+              <td></td>
+              <th>Yahtzee!</th>
+              <td id="c-yahtzee" class="comp-score-val">0</td>
+              <!-- Computer TOTAL SCORE -->
+              <td></td>
+              <th>Total:</th>
+              <td id="comp-total" class="comp-score-val">0</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Dice interface -->
+    <div class="conatiner-fluid container-dice">
+      <button type="button" id="roll" class="btn btn-dark">Click to start</button>
+      <div class="row dice-holder justify-content-center">
+        <div class="col-sm-2 col-2">
+          <i id="icon1" class="fas fa-dice-two dice"></i>
+        </div>
+        <div class="col-sm-2 col-2 ">
+          <i id="icon2" class="fas fa-dice-two dice"></i>
+        </div>
+        <div class="col-sm-2 col-2">
+          <i id="icon3" class="fas fa-dice-one dice"></i>
+        </div>
+        <div class="col-sm-2 col-2">
+          <i id="icon4" class="fas fa-dice-one dice"></i>
+        </div>
+        <div class="col-sm-2 col-2">
+          <i id="icon5" class="fas fa-dice-one dice"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+
+  </div>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+
+  <!-- Custom JS -->
+  <script src="js/global.js" charset="utf-8"></script>
+  <script src="js/calculateScore.js" charset="utf-8"></script>
+  <script src="js/dice.js" charset="utf-8"></script>
+  <script src="js/gameplay.js" charset="utf-8"></script>
+</body>
+
+</html>
