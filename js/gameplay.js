@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 $(function() { // .ready method shorthand
 
- // Ctrls for the score buttons
-  $(".score-btn").on("click", function() {
-    //  Ctrls the left column
+ /////Ctrls for the score buttons /////
+
+  $(".score-btn").on("click", function() { //  Ctrls the left column
     if ($(this).hasClass("hold" ) == true) {
       $(".message").text("This category has been used. Pick another.");
       setTimeout(function(){ $(".message").show(); }, 20);
@@ -24,8 +24,7 @@ $(function() { // .ready method shorthand
     }
   });
 
-  $(".score-btn-b").on("click", function() {
-    // Ctrls right column
+  $(".score-btn-b").on("click", function() { // Ctrls right column
     if ($(this).hasClass("hold") == true) {
       $(".message").text("This category has been used. Pick another.");
       setTimeout(function(){ $(".message").show(); }, 20);

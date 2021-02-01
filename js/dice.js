@@ -1,24 +1,18 @@
 /*jshint esversion: 6 */
-// Adds functionality to the roll btn
-rollBtn.on("click", function() {
+// Roll btn functionality
+rollBtn.on("click", () => {
   // For first roll of the game
   if (round === 0) {
     // Changes btn label "Click to start" to "Roll Dice"
     rollBtn.text("Roll Dice");
     diceRoll(); // Fill curRoll array
+
     shuffle(1); // Roll animation for icons 1-5
-    setTimeout(function() {
-      shuffle(2);
-    }, 250);
-    setTimeout(function() {
-      shuffle(3);
-    }, 500);
-    setTimeout(function() {
-      shuffle(4);
-    }, 750);
-    setTimeout(function() {
-      shuffle(5);
-    }, 1000);
+    setTimeout( () => shuffle(2), 250);
+    setTimeout( () => shuffle(3), 500);
+    setTimeout( () => shuffle(4), 750);
+    setTimeout( () => shuffle(5), 1000);
+
     round++;
     rollCount++;
   } else if (round > 0 && rollCount < 3) {

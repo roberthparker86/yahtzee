@@ -48,8 +48,7 @@ function diceRoll() {
   }
 }
 
-function shuffle(num) {
-  // Adds roll animation to dice. Takes 250 ms to execute
+function shuffle(num) { // Adds roll animation to dice. Takes 250 ms to execute
   if (shuffleCount < 5) {
   	setTimeout(function(){
     	icon[num].removeClass().addClass(diceClass[randNum()]);
@@ -62,17 +61,14 @@ function shuffle(num) {
   }
 }
 
-function btnFlash() {
+function btnFlash(count,max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
-  setTimeout(function(){ rollBtn.toggleClass("lite"); }, 100);
-  setTimeout(function(){ rollBtn.toggleClass("lite"); }, 200);
-  setTimeout(function(){ rollBtn.toggleClass("lite"); }, 300);
-  setTimeout(function(){ rollBtn.toggleClass("lite"); }, 400);
-  setTimeout(function(){ rollBtn.toggleClass("lite"); }, 500);
+  (count < max) 
+  ? setTimeout( () => { btnFlash(count +1, max) }, 100) 
+  : null;
 }
 
-function returnVal(string) {
-  // Takes class as string and returns corresponding integer
+function returnVal(string) { // Take CSS class and return integer
   switch (string) {
     case diceClass[1]:
       return 1;
@@ -210,7 +206,9 @@ function plyrCheck() {
       rollCount = 0;
       $(".message").text("Computer turn finished!");
       setTimeout(function(){ $(".message").show(); }, 20);
-      setTimeout(btnFlash, 50);
+      setTimeout( () => {
+        btnFlash(0,6);
+      }, 50);
 
     }
   }
