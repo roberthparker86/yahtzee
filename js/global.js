@@ -35,35 +35,9 @@ function randNum() {
   return number;
 }
 
-function diceRoll() {
-  // Uses randNum() to fill curRoll with 5 integers 1-6
-	for (let i = 1; i < 6; i++) {
-    if ( icon[i].hasClass("hold") ) {
-    	icon[i].removeClass("hold");
-      curRoll.push(returnVal(icon[i].attr("class")));
-      icon[i].addClass("hold");
-    } else {
-      curRoll.push(randNum());
-    }
-  }
-}
-
-function shuffle(num) { // Adds roll animation to dice. Takes 250 ms to execute
-  if (shuffleCount < 5) {
-  	setTimeout(function(){
-    	icon[num].removeClass().addClass(diceClass[randNum()]);
-    	shuffleCount++;
-    	shuffle(num);
-    }, 50);
-  } else {
-  	icon[num].removeClass().addClass(diceClass[curRoll[num - 1]]);
-    shuffleCount = 0;
-  }
-}
-
 function btnFlash(count,max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
-  (count < max) 
+  (count <= max) 
   ? setTimeout( () => { btnFlash(count +1, max) }, 100) 
   : null;
 }
@@ -216,7 +190,7 @@ function plyrCheck() {
 
 // +++ Computer's Turn +++
 function compRollDice() {
-  diceRoll(); // Populate curRoll for comp turn
+  diceRoll(iconArr); // Populate curRoll for comp turn
   for (let i = 1; i < 6; i++) { // Shuffle
       setTimeout(shuffle(i), ((i-1) * 250) );
   }
@@ -229,7 +203,7 @@ function checkToRoll(){
   // Checks if roll needs to be made, if not calls function to calculate score
   // and update the computer scoreboard.
   if (rollCount < 3 && checkDice() == "other") {
-    diceRoll();
+    diceRoll(iconArr);
     rollCount++; // Add roll for this turn
     curRoll.length = 0;
     compRollDice(); // Maximum roll not reached. Call function again
