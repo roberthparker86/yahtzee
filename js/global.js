@@ -27,13 +27,6 @@ let round = 0,
     compScoreArr = [],
     playerTotal = 0; // Total score updated every turn for end of game compare
 
-// +++ Dice roll functions +++
-function randNum() {
-  // Generates random number
-	let number = Math.ceil(Math.random() * 6);
-  return number;
-}
-
 function btnFlash(count,max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
   (count <= max) 

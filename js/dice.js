@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
-///// Declarations /////
+///// Dice roll functions /////
+
+const randNum = () => Math.ceil(Math.random() * 6); // Generates random number
 
 const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" class
   arr.forEach( (item) => {
@@ -19,43 +21,40 @@ const shuffleDie = (index, count, max) => { // reassigns random dice class every
       .addClass(diceClass[randNum()]), 
     setTimeout( () => {
       shuffleDie(index, count + 1, max)
-    }, 50)) 
+    }, 100)) 
   : icon[index]
       .removeClass()
       .addClass(diceClass[curRoll[index -1]]);
 };
 
-// Roll btn functionality
+const shuffleDiceHand = (arr, func) => { // Apply passed function to passed array
+  arr.forEach( (die,index) => {
+    !icon[index + 1].hasClass('hold')
+    ? setTimeout( () => { func(index+1, 0, 10); }, 250 )
+    : null;
+  }) 
+};
+
+///// Roll btn functionality /////
+
 rollBtn.on("click", () => {
-  // For first roll of the game
-  if (round === 0) {
-    // Changes btn label "Click to start" to "Roll Dice"
-    rollBtn.text("Roll Dice");
-    diceRoll(iconArr); // Fill curRoll array
 
-    shuffleDie(1,0,5); // Roll animation for icons 1-5
-    setTimeout( () => shuffleDie(2,0,5), 250);
-    setTimeout( () => shuffleDie(3,0,5), 500);
-    setTimeout( () => shuffleDie(4,0,5), 750);
-    setTimeout( () => shuffleDie(5,0,5), 1000);
+  (round === 0) // First roll of game
+  ? (rollBtn.text("Roll Dice"), 
+    diceRoll(iconArr), // Fill curRoll array
+    shuffleDiceHand(curRoll, shuffleDie), // Roll for icons 1-5
+    round++,
+    rollCount++)
 
-    round++;
-    rollCount++;
-  } else if (round > 0 && rollCount < 3) {
-    //  For subsequent rolls. If .hold class not present, removes current class
-    // and assigns new classes randomly
-    curRoll.length = 0;
-    diceRoll(iconArr); // Fill curRoll array
-    for (let i = 1; i < 6; i++) {
-      if (icon[i].hasClass("hold") === false) {
-        setTimeout(shuffleDie(i,0,5), ((i-1) * 250) );
-      }
-    }
-    rollCount++;
-  } else {
-    $(".message").text("No more rolls!");
-    setTimeout(function(){ $(".message").show(); }, 20);
-  }
+  : (round > 0 && rollCount < 3) // Subsequent rolls
+    ? (curRoll.length = 0,
+      diceRoll(iconArr),
+      shuffleDiceHand(curRoll, shuffleDie),
+      rollCount++)
+
+    : ($(".message").text("No more rolls!"), // No more rolls for current turn
+      setTimeout( () => { 
+        $(".message").show(); }, 20));
 });
 
 // Puts "hold" class on clicked icon, making  rollBtn click pass
