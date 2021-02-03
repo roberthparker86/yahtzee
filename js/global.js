@@ -21,7 +21,6 @@ const diceClass = {
 
 let round = 0,
     curRoll = [], // Array to hold generated num from diceRoll()
-    shuffleCount = 0, // Allow counting to set limit for shuffle()
     rollCount = 0,// Amount of dice rolls in current turn
     plyrTurn = 0,
     plyrScore = [0], // Array for holding player score to sum up every round
@@ -192,7 +191,7 @@ function plyrCheck() {
 function compRollDice() {
   diceRoll(iconArr); // Populate curRoll for comp turn
   for (let i = 1; i < 6; i++) { // Shuffle
-      setTimeout(shuffle(i), ((i-1) * 250) );
+      setTimeout(shuffleDie(i,0,5), ((i-1) * 250) );
   }
   rollCount++;
   curRoll.sort((a,b) => a-b); // Sort array in ascending order
@@ -451,7 +450,6 @@ function gameReset() {
   round = 0; // Reset values
   curRoll.length = 0;
   rollCount = 0;
-  shuffleCount = 0;
   plyrTurn = 0;
   plyrScore.length = 0;
   plyrScore.push(0);

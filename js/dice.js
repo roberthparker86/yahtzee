@@ -12,18 +12,18 @@ const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" 
   });
 }
 
-function shuffle(num) { // Adds roll animation to a die.
-  if (shuffleCount < 5) {
-  	setTimeout(function(){
-    	icon[num].removeClass().addClass(diceClass[randNum()]);
-    	shuffleCount++;
-    	shuffle(num);
-    }, 50);
-  } else {
-  	icon[num].removeClass().addClass(diceClass[curRoll[num - 1]]);
-    shuffleCount = 0;
-  }
-}
+const shuffleDie = (index, count, max) => { // reassigns random dice class every 50 ms for shuffle effect
+  (count <= max)
+  ? (icon[index]
+      .removeClass()
+      .addClass(diceClass[randNum()]), 
+    setTimeout( () => {
+      shuffleDie(index, count + 1, max)
+    }, 50)) 
+  : icon[index]
+      .removeClass()
+      .addClass(diceClass[curRoll[index -1]]);
+};
 
 // Roll btn functionality
 rollBtn.on("click", () => {
@@ -33,11 +33,11 @@ rollBtn.on("click", () => {
     rollBtn.text("Roll Dice");
     diceRoll(iconArr); // Fill curRoll array
 
-    shuffle(1); // Roll animation for icons 1-5
-    setTimeout( () => shuffle(2), 250);
-    setTimeout( () => shuffle(3), 500);
-    setTimeout( () => shuffle(4), 750);
-    setTimeout( () => shuffle(5), 1000);
+    shuffleDie(1,0,5); // Roll animation for icons 1-5
+    setTimeout( () => shuffleDie(2,0,5), 250);
+    setTimeout( () => shuffleDie(3,0,5), 500);
+    setTimeout( () => shuffleDie(4,0,5), 750);
+    setTimeout( () => shuffleDie(5,0,5), 1000);
 
     round++;
     rollCount++;
@@ -48,7 +48,7 @@ rollBtn.on("click", () => {
     diceRoll(iconArr); // Fill curRoll array
     for (let i = 1; i < 6; i++) {
       if (icon[i].hasClass("hold") === false) {
-        setTimeout(shuffle(i), ((i-1) * 250) );
+        setTimeout(shuffleDie(i,0,5), ((i-1) * 250) );
       }
     }
     rollCount++;
