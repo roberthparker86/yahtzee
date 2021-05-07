@@ -8,9 +8,9 @@ const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" 
   arr.forEach( (item) => {
     item.hasClass('hold') 
     ? (item.removeClass('hold'), 
-      curRoll.push( returnVal(item.attr('class'))), 
+      currentDiceRolled.push( returnVal(item.attr('class'))), 
       item.addClass('hold')) 
-    : curRoll.push(randNum());
+    : currentDiceRolled.push(randNum());
   });
 }
 
@@ -24,7 +24,7 @@ const shuffleDie = (index, count, max) => { // reassigns random dice class every
     }, 100)) 
   : icon[index]
       .removeClass()
-      .addClass(diceClass[curRoll[index -1]]);
+      .addClass(diceClass[currentDiceRolled[index -1]]);
 };
 
 const shuffleDiceHand = (arr, func) => { // Apply passed function to passed array
@@ -41,15 +41,15 @@ rollBtn.on("click", () => {
 
   (round === 0) // First roll of game
   ? (rollBtn.text("Roll Dice"), 
-    diceRoll(iconArr), // Fill curRoll array
-    shuffleDiceHand(curRoll, shuffleDie), // Roll for icons 1-5
+    diceRoll(iconArr), // Fill currentDiceRolled array
+    shuffleDiceHand(currentDiceRolled, shuffleDie), // Roll for icons 1-5
     round++,
     rollCount++)
 
   : (round > 0 && rollCount < 3) // Subsequent rolls
-    ? (curRoll.length = 0,
+    ? (currentDiceRolled.length = 0,
       diceRoll(iconArr),
-      shuffleDiceHand(curRoll, shuffleDie),
+      shuffleDiceHand(currentDiceRolled, shuffleDie),
       rollCount++)
 
     : ($(".message").text("No more rolls!"), // No more rolls for current turn
