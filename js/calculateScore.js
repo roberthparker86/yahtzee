@@ -2,11 +2,6 @@
 const calcScore = (id) => { 
   let currentRollScore = 0; // Score value to be returned
 
-  // Sort array in ascending order
-  currentDiceRolled.sort((a,b) => a-b);
-
-  let tempSet = new Set(currentDiceRolled);
-
   //  Switch function will execute based on the Btn ID that is passed
   switch (id) {
     // 1's btn
@@ -14,9 +9,9 @@ const calcScore = (id) => {
       let arrayOfOnes = currentDiceRolled.filter(num => ( num === 1 && num ));
 
       currentRollScore = arrayOfOnes.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+      plyrScore.push(currentRollScore); // For updating number displayed under total
 
-      return currentRollScore; // Return score for current turn
+      return currentRollScore; // For updating number under 1 on the scoreboard
       break;
 
     //  2's Btn
@@ -44,9 +39,9 @@ const calcScore = (id) => {
       let arrayOfFours = currentDiceRolled.filter(num => ( num === 4 && num ));
 
       currentRollScore = arrayOfFours.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+      plyrScore.push(currentRollScore);
 
-      return currentRollScore; // Return score for current turn
+      return currentRollScore;
       break;
 
     //  5's Btn
@@ -54,9 +49,9 @@ const calcScore = (id) => {
       let arrayOfFives = currentDiceRolled.filter(num => ( num === 5 && num ));
 
       currentRollScore = arrayOfFives.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+      plyrScore.push(currentRollScore);
 
-      return currentRollScore; // Return score for current turn
+      return currentRollScore;
       break;
 
     //  6's Btn
@@ -64,72 +59,68 @@ const calcScore = (id) => {
       let arrayOfSixes = currentDiceRolled.filter(num => ( num === 6 && num ));
 
       currentRollScore = arrayOfSixes.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+      plyrScore.push(currentRollScore);
       
-      return currentRollScore; // Return score for current turn
+      return currentRollScore;
       break;
 
     //  Yahtzee Btn
     case "p-btn-yahtzee":
-      checkYahtzee(currentDiceRolled) === true ? currentRollScore = 50 : null;
-
+      checkYahtzee(currentDiceRolled) && (currentRollScore = 50);
       plyrScore.push(currentRollScore); // For adding total scores
+
       return currentRollScore; // Return score for current turn
       break;
 
     //  3 of a kind Btn
     case "p-btn-3x":
-      checkThreeKind(currentDiceRolled) === true 
-      ? currentRollScore = currentDiceRolled.reduce( (a,b) => a + b )
-      : null;
-
+      checkThreeKind(currentDiceRolled) && ( currentRollScore = currentDiceRolled.reduce( (a,b) => a + b ) );
       plyrScore.push(currentRollScore); // For adding total scores
+
       return currentRollScore; // Return score for current turn
       break;
 
-      //  4 of a kind Btn
-      case "p-btn-4x":
-        checkFourKind(currentDiceRolled) === true
-        ? currentRollScore = currentDiceRolled.reduce( (a,b) => a + b )
-        : null;
+    //  4 of a kind Btn
+    case "p-btn-4x":
+      checkFourKind(currentDiceRolled) && ( currentRollScore = currentDiceRolled.reduce( (a,b) => a + b ) );
+      plyrScore.push(currentRollScore); // For adding total scores
 
-        plyrScore.push(currentRollScore); // For adding total scores
-        return currentRollScore; // Return score for current turn
-        break;
+      return currentRollScore; // Return score for current turn
+      break;
 
-      // Full House Btn
-      case "p-btn-fh":
-        checkFullHouse(currentDiceRolled) === true ? currentRollScore = 25 : null;
+    // Full House Btn
+    case "p-btn-fh":
+      checkFullHouse(currentDiceRolled) && (currentRollScore = 25);
+      plyrScore.push(currentRollScore); // For adding total scores
 
-        plyrScore.push(currentRollScore); // For adding total scores
-        return currentRollScore; // Return score for current turn
-        break;
+      return currentRollScore; // Return score for current turn
+      break;
 
-      // Small Straight Btn
-      case "p-btn-ss":
-        checkSmallStraight(currentDiceRolled) === true ? currentRollScore = 30 : null;
+    // Small Straight Btn
+    case "p-btn-ss":
+      checkSmallStraight(currentDiceRolled) && (currentRollScore = 30);
+      plyrScore.push(currentRollScore); // For adding total scores
 
-        plyrScore.push(currentRollScore); // For adding total scores
-        return currentRollScore; // Return score for current turn
-        break;
+      return currentRollScore; // Return score for current turn
+      break;
 
-      // Large Straight Btn
-      case "p-btn-ls":
-        checkLargeStraight(currentDiceRolled) === true ? currentRollScore = 40 : null;
+    // Large Straight Btn
+    case "p-btn-ls":
+      checkLargeStraight(currentDiceRolled) && (currentRollScore = 40);
+      plyrScore.push(currentRollScore); // For adding total scores
 
-        plyrScore.push(currentRollScore); // For adding total scores
-        return currentRollScore; // Return score for current turn
-        break;
+      return currentRollScore; // Return score for current turn
+      break;
 
-      // Any Combo Btn
-      case "p-btn-any":
-        currentRollScore = currentDiceRolled.reduce( (a,b) => a + b )
+    // Any Combo Btn
+    case "p-btn-any":
+      currentRollScore = currentDiceRolled.reduce( (a,b) => a + b )
+      plyrScore.push(currentRollScore); // For adding total scores
 
-        plyrScore.push(currentRollScore); // For adding total scores
-        return currentRollScore; // Return score for current turn
-        break;
+      return currentRollScore; // Return score for current turn
+      break;
 
-      default:
-        alert("Error");
-  }  
-}
+    default:
+      alert("Error");
+  };  
+};

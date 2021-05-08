@@ -29,9 +29,7 @@ let round = 0,
 
 function btnFlash(count,max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
-  (count <= max) 
-  ? setTimeout( () => { btnFlash(count +1, max) }, 100) 
-  : null;
+  (count <= max) && setTimeout(() => { btnFlash(count +1, max) }, 100);
 }
 
 function returnVal(string) { // Take CSS class and return integer
@@ -65,7 +63,7 @@ function returnVal(string) { // Take CSS class and return integer
   }
 }
 
-// +++ Specific score checks +++
+///// Specific score checks /////
 function checkYahtzee(array) {
   // Takes currentDiceRolled - returns boolean if yahtzee or not
   let tempSet = new Set(currentDiceRolled);
@@ -76,7 +74,7 @@ function checkYahtzee(array) {
 }
 
 function checkSmallStraight(array) {
-  // Takes array and returns true if straight. Assumes array has been sorted.
+  // Takes array and returns true if straight.
   let count = 0,
   		tempSet = new Set(array);
   if (tempSet.size === 4) {
