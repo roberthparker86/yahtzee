@@ -32,6 +32,15 @@ function btnFlash(count,max) { // Roll button flashes at start of turn
   (count <= max) && setTimeout(() => { btnFlash(count +1, max) }, 100);
 }
 
+function sortAndSet (arr) { 
+	let sorted = arr.map(x => x);
+  sorted.sort();
+  tempSet = new Set(sorted);
+  let sortedSet = [];
+  for (let item of tempSet) sortedSet.push(item);
+  return sortedSet;
+};
+
 function returnVal(string) { // Take CSS class and return integer
   switch (string) {
     case diceClass[1]:
@@ -74,25 +83,13 @@ function checkYahtzee(array) {
 }
 
 function checkSmallStraight(array) {
-  // Takes array and returns true if straight.
-  let count = 0,
-  		tempSet = new Set(array);
-  if (tempSet.size === 4) {
-  	for (let i = 0; i < array.length - 1; i++) {
-    	if (array[i] + 1 === array[i + 1]) {
-      	count++;
-      }
-    }
-    if (count === 3) {
-    	return true;
-    }
-  }
-  if (tempSet.size === 5) {
-  	if (array[0] + 2 === array[1] || array[3] + 2 === array[4]) {
-    	return true;
-    }
-  }
-  return false;
+  let arrayToCheck = sortAndSet(array);
+  let count = 0;
+  arrayToCheck.forEach((num, index, arr) => {
+    return (index < arr.length - 1)
+        && (num + 1 === arr[index + 1]) && count++;
+  });
+  return count >= 3;
 }
 
 function checkLargeStraight(array) {
