@@ -184,13 +184,13 @@ function compRollDice() {
 function checkToRoll(){
   // Checks if roll needs to be made, if not calls function to calculate score
   // and update the computer scoreboard.
-  if (rollCount < 3 && checkDice() == "other") {
+  if (rollCount < 3 && checkComputerDiceHand(currentDiceRolled) == "other") {
     diceRoll(iconArr);
     rollCount++; // Add roll for this turn
     currentDiceRolled.length = 0;
     compRollDice(); // Maximum roll not reached. Call function again
   } else {
-    calcCompScore(checkDice());
+    calcCompScore(checkComputerDiceHand(currentDiceRolled));
     setTimeout(function(){
       currentDiceRolled.length = 0; // Reset Value and Dice arrays for next turn
       plyrTurn++; // Increase Player Turn value to trigger change next round
@@ -199,25 +199,25 @@ function checkToRoll(){
   }
 }
 
-function checkDice() {
+function checkComputerDiceHand(arr) {
   // Check current line-up of dice to calculate highest possible score
-  if (checkYahtzee(currentDiceRolled) == true && $("#c-yahtzee").hasClass("hold") == false ) {
-    return "c-yahtzee";
-  } else if (checkLargeStraight(currentDiceRolled) == true && $("#c-ls").hasClass("hold") == false ) {
-    return "c-ls";
-  } else if (checkSmallStraight(currentDiceRolled) == true && $("#c-ss").hasClass("hold") == false ) {
-    return "c-ss";
-  } else if (checkFullHouse(currentDiceRolled) == true && $("#c-fh").hasClass("hold") == false ) {
-    return "c-fh";
-  } else if (checkFourKind(currentDiceRolled) == true && $("#c-fourx").hasClass("hold") == false ) {
-    return "c-fourx";
-  } else if (checkThreeKind(currentDiceRolled) == true && $("#c-threex").hasClass("hold") == false) {
-    return "c-threex";
-  }  else if ($("#c-any").hasClass("hold") == false) {
-      return "c-any";
-  } else {
-    return "other";
-  }
+  return (
+  	checkYahtzee(arr) && !$("#c-yahtzee").hasClass("hold")
+  	?	"c-yahtzee"
+    : checkLargeStraight(arr) && !$("#c-ls").hasClass("hold")
+    ? "c-ls"
+    : checkSmallStraight(arr) && !$("#c-ss").hasClass("hold")
+    ? "c-ss"
+    : checkFullHouse(arr) && !$("#c-fh").hasClass("hold")
+    ? "c-fh"
+    : checkFourKind(arr) && !$("#c-fourx").hasClass("hold")
+    ? "c-fourx"
+    : checkThreeKind(arr) && !$("#c-threex").hasClass("hold")
+    ? "c-threex"
+    : !$("#c-any").hasClass("hold")
+    ?	"c-any"
+    : "other"
+    );
 }
 
 function scoreZero(array) {
