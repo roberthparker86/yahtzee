@@ -20,14 +20,14 @@ const diceClass = {
       roundNum = $(".round-num");
 
 let round = 0,
-    currentDiceRolled = [], // Array to hold generated num from diceRoll()
+    currentDiceRolled = [],
     rollCount = 0,// Amount of dice rolls in current turn
     plyrTurn = 0,
     plyrScore = [0], // Array for holding player score to sum up every round
     compScoreArr = [],
     playerTotal = 0; // Total score updated every turn for end of game compare
 
-function btnFlash(count,max) { // Roll button flashes at start of turn
+function btnFlash(count, max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
   (count <= max) && setTimeout(() => { btnFlash(count +1, max) }, 100);
 }
@@ -39,6 +39,14 @@ function sortAndSet (arr) {
   let sortedSet = [];
   for (let item of tempSet) sortedSet.push(item);
   return sortedSet;
+};
+
+const countNumberInArray = (array, specificIndex) => { // Count number in passed array at specificIndex  
+	let firstNumberCountArray = array.filter((num, index, array) => {
+  	return num === array[specificIndex];
+  });
+  
+  return firstNumberCountArray.length;
 };
 
 function returnVal(string) { // Take CSS class and return integer
@@ -74,12 +82,8 @@ function returnVal(string) { // Take CSS class and return integer
 
 ///// Specific score checks /////
 function checkYahtzee(array) {
-  // Takes currentDiceRolled - returns boolean if yahtzee or not
-  let tempSet = new Set(currentDiceRolled);
-  if (tempSet.size == 1) {
-    return true;
-  }
-  return false;
+  let arrayToCheck = sortAndSet(array);
+  return arrayToCheck.length === 1;
 }
 
 function checkSmallStraight(array) {
@@ -93,12 +97,13 @@ function checkSmallStraight(array) {
 }
 
 function checkLargeStraight(array) {
-  let count = 0,
-      tempSet = new Set(array);
-  if (currentDiceRolled.reduce(function(a,b){ return a + b;}) == 20 && tempSet.size == 5 || currentDiceRolled.reduce(function(a,b){ return a + b;}) == 15 && tempSet.size == 5) {
-    return true;
-  }
-  return false;
+  let arrayToCheck = sortAndSet(array);
+  let count = 0;
+  arrayToCheck.forEach((num, index, arr) => {
+    return (index < arr.length - 1)
+        && (num + 1 === arr[index + 1]) && count++;
+  });
+  return count >= 4;
 }
 
 function checkFullHouse(array) {
@@ -116,21 +121,11 @@ function checkFullHouse(array) {
   return false;
 }
 
-function checkFourKind(array) {
-  // Takes currentDiceRolled- return boolean for 4 of a kind
-  for (let i = 0; i < array.length; i++) {
-    let count = 0;
-    for (let j = 0; j < array.length; j++) {
-      if (array[i] === array[j]) {
-        count++;
-      }
-    }
-    if (count >= 4) {
-      return true;
-    }
-  }
-  return false;
-}
+function checkFourKind(array) {  
+  return countNumberInArray(array, 0) > 3
+  	? true
+    : countNumberInArray(array, 0) === 1 && countNumberInArray(array, 1) > 3;
+};
 
 function checkThreeKind(array) {
   // Takes currentDiceRolled - return boolean for 3 of a kind
