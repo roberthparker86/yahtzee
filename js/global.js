@@ -24,7 +24,7 @@ let round = 0,
     rollCount = 0,// Amount of dice rolls in current turn
     plyrTurn = 0,
     plyrScore = [0], // Array for holding player score to sum up every round
-    compScoreArr = [],
+    computerScoreArray = [],
     playerTotal = 0; // Total score updated every turn for end of game compare
 
 function btnFlash(count, max) { // Roll button flashes at start of turn
@@ -49,36 +49,14 @@ const countNumberInArray = (array, specificIndex) => { // Count number in passed
   return firstNumberCountArray.length;
 };
 
-function returnVal(string) { // Take CSS class and return integer
-  switch (string) {
-    case diceClass[1]:
-      return 1;
-      break;
-
-    case diceClass[2]:
-      return 2;
-      break;
-
-    case diceClass[3]:
-      return 3;
-      break;
-
-    case diceClass[4]:
-      return 4;
-      break;
-
-    case diceClass[5]:
-      return 5;
-      break;
-
-    case diceClass[6]:
-      return 6;
-      break;
-
-    default:
-      alert("Error");
-  }
-}
+const diceValue = {
+	"fas fa-dice-one dice": 1,
+  "fas fa-dice-two dice": 2,
+  "fas fa-dice-three dice": 3,
+  "fas fa-dice-four dice": 4,
+  "fas fa-dice-five dice": 5,
+  "fas fa-dice-six dice": 6
+};
 
 ///// Specific score checks /////
 function checkYahtzee(array) {
@@ -107,18 +85,11 @@ function checkLargeStraight(array) {
 }
 
 function checkFullHouse(array) {
-  // Takes currentDiceRolled - return boolean for full house
-  let tempSet = new Set(array),
-      count = 0;
-  for (let i = 1; i < array.length - 2; i++) {
-    if (array[0] == array[i]) {
-      count++;
-    }
-  }
-  if (tempSet.size == 2 && count == 1 || tempSet.size == 2 && count == 2) {
-    return true;
-  }
-  return false;
+  let setArray = sortAndSet(array);
+  
+  return setArray.length === 2
+  	? countNumberInArray(array, 0) === 3 || countNumberInArray(array, 0) === 2
+    : false;
 }
 
 function checkFourKind(array) {  
@@ -128,26 +99,20 @@ function checkFourKind(array) {
 };
 
 function checkThreeKind(array) {
-  // Takes currentDiceRolled - return boolean for 3 of a kind
-  for (let i = 0; i < array.length; i++) {
-    let count = 0;
-    for (let j = 0; j < array.length; j++) {
-      if (array[i] === array[j]) {
-        count++;
-      }
-    }
-    if (count >= 3) {
-      return true;
-    }
-  }
-  return false;
+  let setArray = sortAndSet(array);
+  return setArray.length < 4
+  	? countNumberInArray(array, 0) >= 3 
+      ? true : countNumberInArray(array, 1) >= 3
+      ? true : countNumberInArray(array, 2) >= 3
+      ? true : false 
+    : false;
 }
 
 // +++ Check Player's Turn +++
 function plyrCheck() {
   if (plyrTurn == 1) {
     $(".message").text("Computer Turn!");
-    setTimeout(function(){ $(".message").show(); }, 20);
+    setTimeout(() => { $(".message").show(); }, 20);
     rollCount = 0;
     currentDiceRolled.length = 0;
     $("div i").removeClass("hold");
@@ -222,7 +187,6 @@ function checkComputerDiceHand(arr) {
 
 function scoreZero(array) {
   // Allows computer to choose a "throwaway" score if no good options available
-  // use currentDiceRolled
   let tempSum = 0;
   if ($("#c-one").hasClass("hold") === false) {
     for (let i = 0; i < array.length; i++) {
@@ -301,70 +265,70 @@ function calcCompScore(string) {
   switch (string) {
     case "c-yahtzee":
       $("#" + string).text(50);
-      compScoreArr.push(50);
+      computerScoreArray.push(50);
       $("#" + string).addClass("hold");
       break;
 
     case "c-ls":
       $("#" + string).text(40);
-      compScoreArr.push(40);
+      computerScoreArray.push(40);
       $("#" + string).addClass("hold");
       break;
 
     case "c-ss":
       $("#" + string).text(30);
-      compScoreArr.push(30);
+      computerScoreArray.push(30);
       $("#" + string).addClass("hold");
       break;
 
     case "c-fh":
       $("#" + string).text(25);
-      compScoreArr.push(25);
+      computerScoreArray.push(25);
       $("#" + string).addClass("hold");
       break;
 
     case "c-fourx":
       $("#" + string).text(compScore);
-      compScoreArr.push(compScore);
+      computerScoreArray.push(compScore);
       $("#" + string).addClass("hold");
       break;
 
     case "c-threex":
       $("#" + string).text(compScore);
-      compScoreArr.push(compScore);
+      computerScoreArray.push(compScore);
       $("#" + string).addClass("hold");
       break;
 
     case "c-any":
       $("#" + string).text(compScore);
-      compScoreArr.push(compScore);
+      computerScoreArray.push(compScore);
       $("#" + string).addClass("hold");
       break;
 
     case "other":
       if (mode(currentDiceRolled) === 6 && $("#c-six").hasClass("hold") == false) {
         $("#c-six").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-six").addClass("hold");
       } else if (mode(currentDiceRolled) === 5 && $("#c-five").hasClass("hold") == false) {
         $("#c-five").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-five").addClass("hold");
       } else if (mode(currentDiceRolled) === 4 && $("#c-four").hasClass("hold") == false) {
         $("#c-four").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-four").addClass("hold");
       } else if (mode(currentDiceRolled) === 3 && $("#c-three").hasClass("hold") == false) {
         $("#c-three").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-three").addClass("hold");
       } else if (mode(currentDiceRolled) === 2 && $("#c-two").hasClass("hold") == false) {
         $("#c-two").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-two").addClass("hold");
       } else if (mode(currentDiceRolled) === 1 && $("#c-one").hasClass("hold") == false) {
         $("#c-one").text(otherScore(currentDiceRolled));
-        compScoreArr.push(otherScore(currentDiceRolled));
+        computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-one").addClass("hold");
       } else {
         scoreZero(currentDiceRolled);
@@ -374,7 +338,7 @@ function calcCompScore(string) {
     default:
       console.log("DEFAULT ERROR");
   }
-  compTotal = compScoreArr.reduce(function(a,b) { return a + b; });
+  compTotal = computerScoreArray.reduce(function(a,b) { return a + b; });
   $("#comp-total").text(compTotal);
   $("#icon1, #icon2, #icon3, #icon4, #icon5").removeClass("hold");
 }
@@ -436,7 +400,7 @@ function gameReset() {
   plyrTurn = 0;
   plyrScore.length = 0;
   plyrScore.push(0);
-  compScoreArr.length = 0;
+  computerScoreArray.length = 0;
   playerTotal = 0;
   $("table button").removeClass("hold"); // Remove .hold classes on buttons
   $(".hold").removeClass("hold"); // Remove all other .hold classes

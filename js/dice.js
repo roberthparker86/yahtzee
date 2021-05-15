@@ -8,7 +8,7 @@ const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" 
   arr.forEach( (item) => {
     item.hasClass('hold') 
     ? (item.removeClass('hold'), 
-      currentDiceRolled.push( returnVal(item.attr('class'))), 
+      currentDiceRolled.push( diceValue[item.attr('class')]), 
       item.addClass('hold')) 
     : currentDiceRolled.push(randNum());
   });
