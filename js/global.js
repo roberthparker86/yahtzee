@@ -68,8 +68,13 @@ function checkSmallStraight(array) {
   let arrayToCheck = sortAndSet(array);
   let count = 0;
   arrayToCheck.forEach((num, index, arr) => {
-    return (index < arr.length - 1)
-        && (num + 1 === arr[index + 1]) && count++;
+    return count < 3
+    	? (index < arr.length - 1)
+        ? (num + 1 === arr[index + 1])
+        	? count++
+          : count = 0
+        : null 
+       : null;
   });
   return count >= 3;
 }
@@ -185,79 +190,43 @@ function checkComputerDiceHand(arr) {
     );
 }
 
-function scoreZero(array) {
-  // Allows computer to choose a "throwaway" score if no good options available
-  let tempSum = 0;
-  if ($("#c-one").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 1) {
-        tempSum += 1;
-      }
-    }
-    $("#c-one").text(tempSum);
-    $("#c-one").addClass("hold");
-  } else if ($("#c-two").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 2) {
-        tempSum += 2;
-      }
-    }
-    $("#c-two").text(tempSum);
-    $("#c-two").addClass("hold");
-  } else if ($("#c-three").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 3) {
-        tempSum += 3;
-      }
-    }
-    $("#c-three").text(tempSum);
-    $("#c-three").addClass("hold");
-  } else if ($("#c-four").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 4) {
-        tempSum += 4;
-      }
-    }
-    $("#c-four").text(tempSum);
-    $("#c-four").addClass("hold");
-  } else if ($("#c-five").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 5) {
-        tempSum += 5;
-      }
-    }
-    $("#c-five").text(tempSum);
-    $("#c-five").addClass("hold");
-  } else if ($("#c-six").hasClass("hold") === false) {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === 6) {
-        tempSum += 6;
-      }
-    }
-    $("#c-six").text(tempSum);
-    $("#c-six").addClass("hold");
-  } else if ($("#c-threex").hasClass("hold") === false) {
-    $("#c-threex").text(0);
-    $("#c-threex").addClass("hold");
-  } else if ($("#c-fourx").hasClass("hold") === false) {
-    $("#c-fourx").text(0);
-    $("#c-fourx").addClass("hold");
-  } else if ($("#c-fh").hasClass("hold") === false) {
-    $("#c-fh").text(0);
-    $("#c-fh").addClass("hold");
-  } else if ($("#c-ss").hasClass("hold") === false) {
-    $("#c-ss").text(0);
-    $("#c-ss").addClass("hold");
-  } else if ($("#c-lg").hasClass("hold") === false) {
-    $("#c-lg").text(0);
-    $("#c-lg").addClass("hold");
-  } else if ($("#c-yahtzee").hasClass("hold") === false) {
-    $("#c-yahtzee").text(0);
-    $("#c-yahtzee").addClass("hold");
-  } else {
-    console.log("ERROR");
-  }
-}
+const throwAwayScore = (array) => {
+  // Allows computer to choose a 'throwaway' score if no good options available
+  const getArraySum = (array, num) => {
+    let temporarySum = 0;
+    array.forEach((item) => {
+      item === num ? temporarySum += num : null;
+    });
+
+    return temporarySum;
+  };
+
+  !$('#c-one').hasClass('hold')
+    ? ($("#c-one").text(getArraySum(array, 1)), $("#c-one").addClass("hold"))
+    : !$('#c-two').hasClass('hold')
+    ? ($("#c-two").text(getArraySum(array, 2)), $("#c-two").addClass("hold"))
+    : !$('#c-three').hasClass('hold')
+    ? ($("#c-three").text(getArraySum(array, 3)), $("#c-three").addClass("hold"))
+    : !$('#c-four').hasClass('hold')
+    ? ($("#c-four").text(getArraySum(array, 4)), $("#c-four").addClass("hold"))
+    : !$('#c-five').hasClass('hold')
+    ? ($("#c-five").text(getArraySum(array, 5)), $("#c-five").addClass("hold"))
+    : !$('#c-six').hasClass('hold')
+    ? ($("#c-six").text(getArraySum(array, 6)), $("#c-six").addClass("hold"))
+    : !$('#c-threex').hasClass('hold')
+    ? ($("#c-threex").text(0), $("#c-threex").addClass("hold"))
+    : !$('#c-fourx').hasClass('hold')
+    ? ($("#c-fourx").text(0), $("#c-fourx").addClass("hold"))
+    : !$('#c-fh').hasClass('hold')
+    ? ($("#c-fh").text(0), $("#c-fh").addClass("hold"))
+    : !$('#c-ss').hasClass('hold')
+    ? ($("#c-ss").text(0), $("#c-ss").addClass("hold"))
+    : !$('#c-lg').hasClass('hold')
+    ? ($("#c-lg").text(0), $("#c-lg").addClass("hold"))
+    : !$('#c-yahtzee').hasClass('hold')
+    ? ($("#c-yahtzee").text(0), $("#c-yahtzee").addClass("hold"))
+    : null;
+};
 
 function calcCompScore(string) {
   let compScore = currentDiceRolled.reduce(function(a,b){ return a + b;} ),
@@ -331,7 +300,7 @@ function calcCompScore(string) {
         computerScoreArray.push(otherScore(currentDiceRolled));
         $("#c-one").addClass("hold");
       } else {
-        scoreZero(currentDiceRolled);
+        throwAwayScore(currentDiceRolled);
       }
       break;
 
