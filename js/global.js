@@ -229,84 +229,43 @@ const throwAwayScore = (array) => {
 };
 
 function calcCompScore(string) {
-  let compScore = currentDiceRolled.reduce(function(a,b){ return a + b;} ),
-      compTotal = 0;
-  switch (string) {
-    case "c-yahtzee":
-      $("#" + string).text(50);
-      computerScoreArray.push(50);
-      $("#" + string).addClass("hold");
-      break;
+  let compScore = currentDiceRolled.reduce(function(a,b){ return a + b;} );
+  let compTotal = 0;
 
-    case "c-ls":
-      $("#" + string).text(40);
-      computerScoreArray.push(40);
-      $("#" + string).addClass("hold");
-      break;
+  const updateSelectScore = (num, string) => {
+    $(`#${string}`).text(num);
+    computerScoreArray.push(num);
+    $(`#${string}`).addClass("hold");
+  };
 
-    case "c-ss":
-      $("#" + string).text(30);
-      computerScoreArray.push(30);
-      $("#" + string).addClass("hold");
-      break;
+  const handleOther = () => {
+    mode(currentDiceRolled) === 6 && !$("#c-six").hasClass("hold") 
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-six")
+      : mode(currentDiceRolled) === 5 && !$("#c-five").hasClass("hold")
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-five")
+      : mode(currentDiceRolled) === 4 && !$("#c-four").hasClass("hold")
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-four")
+      : mode(currentDiceRolled) === 3 && !$("#c-three").hasClass("hold")
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-three")
+      : mode(currentDiceRolled) === 2 && !$("#c-two").hasClass("hold")
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-two")
+      : mode(currentDiceRolled) === 1 && !$("#c-one").hasClass("hold")
+      ? updateSelectScore(otherScore(currentDiceRolled), "c-one")
+      : throwAwayScore(currentDiceRolled);
+  };
 
-    case "c-fh":
-      $("#" + string).text(25);
-      computerScoreArray.push(25);
-      $("#" + string).addClass("hold");
-      break;
+  const computerScoreController = {
+    "c-yahtzee": () => { updateSelectScore(50, string) },
+    "c-ls": () => { updateSelectScore(40, string) },
+    "c-ss": () => { updateSelectScore(30, string) },
+    "c-fh": () => { updateSelectScore(25, string) },
+    "c-fourx": () => { updateSelectScore(compScore, string) },
+    "c-threex": () => { updateSelectScore(compScore, string) },
+    "c-any": () => { updateSelectScore(compScore, string) },
+    "other": () => { handleOther() }
+  };
 
-    case "c-fourx":
-      $("#" + string).text(compScore);
-      computerScoreArray.push(compScore);
-      $("#" + string).addClass("hold");
-      break;
-
-    case "c-threex":
-      $("#" + string).text(compScore);
-      computerScoreArray.push(compScore);
-      $("#" + string).addClass("hold");
-      break;
-
-    case "c-any":
-      $("#" + string).text(compScore);
-      computerScoreArray.push(compScore);
-      $("#" + string).addClass("hold");
-      break;
-
-    case "other":
-      if (mode(currentDiceRolled) === 6 && $("#c-six").hasClass("hold") == false) {
-        $("#c-six").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-six").addClass("hold");
-      } else if (mode(currentDiceRolled) === 5 && $("#c-five").hasClass("hold") == false) {
-        $("#c-five").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-five").addClass("hold");
-      } else if (mode(currentDiceRolled) === 4 && $("#c-four").hasClass("hold") == false) {
-        $("#c-four").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-four").addClass("hold");
-      } else if (mode(currentDiceRolled) === 3 && $("#c-three").hasClass("hold") == false) {
-        $("#c-three").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-three").addClass("hold");
-      } else if (mode(currentDiceRolled) === 2 && $("#c-two").hasClass("hold") == false) {
-        $("#c-two").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-two").addClass("hold");
-      } else if (mode(currentDiceRolled) === 1 && $("#c-one").hasClass("hold") == false) {
-        $("#c-one").text(otherScore(currentDiceRolled));
-        computerScoreArray.push(otherScore(currentDiceRolled));
-        $("#c-one").addClass("hold");
-      } else {
-        throwAwayScore(currentDiceRolled);
-      }
-      break;
-
-    default:
-      console.log("DEFAULT ERROR");
-  }
+  computerScoreController[string](string);
   compTotal = computerScoreArray.reduce(function(a,b) { return a + b; });
   $("#comp-total").text(compTotal);
   $("#icon1, #icon2, #icon3, #icon4, #icon5").removeClass("hold");
@@ -315,9 +274,9 @@ function calcCompScore(string) {
 function mode(array) {
   // finds the mode of array and returns integer. If all occurences equal,
   // returns the lowest value, assuming array is sorted in ascending order
-  let modeMap = {},
-      curMode = array[0],
-      maxCount = 1;
+  let modeMap = {};
+  let curMode = array[0];
+  let maxCount = 1;
 
   if (array.length === 0) {
   	return null;
