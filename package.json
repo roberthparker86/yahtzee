@@ -1,0 +1,25 @@
+{
+  "name": "yahtzee",
+  "version": "0.4.0",
+  "description": "Web based Yahtzee game",
+  "main": "index.js",
+  "dependencies": {
+    "jshint": "^2.13.0"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.0"
+  },
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roberthparker86/yahtzee.git"
+  },
+  "author": "Robert Parker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roberthparker86/yahtzee/issues"
+  },
+  "homepage": "https://github.com/roberthparker86/yahtzee#readme"
+}

@@ -1,0 +1,59 @@
+body {
+    font-family: $font-body;
+    font-size: .85rem;
+    line-height: 1rem;
+    text-align: center;
+}
+
+h1, 
+h3 {
+    color: $color-med-magenta;
+    font-family: $font-header;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    margin: .5rem;
+}
+
+h3 {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 5px;
+}
+
+h4 {
+    color: $color-dark-purple;
+    display: inline-block;
+    font-family: $font-header;
+    font-size: .85rem;
+    line-height: .85rem;
+    padding: 13px 13px 0;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 1rem;
+        line-height: 1.15rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        line-height: 3.25rem;
+        margin: 15px 10%;
+    }
+
+    h3 {
+        font-size: 2.25rem;
+        line-height: 2rem;
+        margin: 0 3% 10px;
+    }
+
+    h4 {
+        font-size: 1.75rem;
+        line-height: 1.5rem;
+        padding: 13px;
+    }
+}

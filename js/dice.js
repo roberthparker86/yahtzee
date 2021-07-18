@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 
 ///// Dice roll functions /////
-
 const randNum = () => Math.ceil(Math.random() * 6); // Generates random number
 
 const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" class
@@ -36,17 +35,16 @@ const shuffleDiceHand = (arr, func) => { // Apply passed function to passed arra
 };
 
 ///// Roll btn functionality /////
-
 rollBtn.on("click", () => {
-
-  (round === 0) // First roll of game
+  // First roll of game
+  (round === 0) 
   ? (rollBtn.text("Roll Dice"), 
     diceRoll(iconArr), // Fill currentDiceRolled array
     shuffleDiceHand(currentDiceRolled, shuffleDie), // Roll for icons 1-5
     round++,
     rollCount++)
-
-  : (round > 0 && rollCount < 3) // Subsequent rolls
+  // Subsequent rolls
+  : (round > 0 && rollCount < 3) 
     ? (currentDiceRolled.length = 0,
       diceRoll(iconArr),
       shuffleDiceHand(currentDiceRolled, shuffleDie),
