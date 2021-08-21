@@ -12,7 +12,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For updating number displayed under total
 
       return currentRollScore; // For updating number under 1 on the scoreboard
-      break;
 
     //  2's Btn
     case "p-btn-2":
@@ -22,7 +21,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     //  3's Btn
     case "p-btn-3":
@@ -32,7 +30,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     //  4's Btn
     case "p-btn-4":
@@ -42,7 +39,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore);
 
       return currentRollScore;
-      break;
 
     //  5's Btn
     case "p-btn-5":
@@ -52,7 +48,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore);
 
       return currentRollScore;
-      break;
 
     //  6's Btn
     case "p-btn-6":
@@ -62,7 +57,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore);
       
       return currentRollScore;
-      break;
 
     //  Yahtzee Btn
     case "p-btn-yahtzee":
@@ -70,7 +64,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     //  3 of a kind Btn
     case "p-btn-3x":
@@ -78,7 +71,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     //  4 of a kind Btn
     case "p-btn-4x":
@@ -86,7 +78,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     // Full House Btn
     case "p-btn-fh":
@@ -94,7 +85,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     // Small Straight Btn
     case "p-btn-ss":
@@ -102,7 +92,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     // Large Straight Btn
     case "p-btn-ls":
@@ -110,7 +99,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     // Any Combo Btn
     case "p-btn-any":
@@ -118,7 +106,6 @@ const calcScore = (id) => {
       plyrScore.push(currentRollScore); // For adding total scores
 
       return currentRollScore; // Return score for current turn
-      break;
 
     default:
       alert("Error");
