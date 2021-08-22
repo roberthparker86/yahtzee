@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-// +++ Global values +++
+/// Global values ///
 const diceClass = {
       '1': "fas fa-dice-one dice", // Classes that determine dice numbers
       '2': "fas fa-dice-two dice",
@@ -58,7 +58,7 @@ const diceValue = {
   "fas fa-dice-six dice": 6
 };
 
-///// Specific score checks /////
+/// Specific score checks ///
 function checkYahtzee(array) {
   let arrayToCheck = sortAndSet(array);
   return arrayToCheck.length === 1;

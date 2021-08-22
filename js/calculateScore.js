@@ -1,113 +1,151 @@
 /*jshint esversion: 6 */
-const calcScore = (id) => { 
-  let currentRollScore = 0; // Score value to be returned
+const scoreCalc = {
+	filterNumbers: (targetNum) => { 
+		return currentDiceRolled.filter(num => ( num === targetNum && num ));
+	},
 
-  //  Switch function will execute based on the Btn ID that is passed
-  switch (id) {
-    // 1's btn
-    case "p-btn-1":
-      let arrayOfOnes = currentDiceRolled.filter(num => ( num === 1 && num ));
+	getScoreSum: (arr) => {
+		return arr.length > 0 ?
+			arr.reduce((total, currentNum) => total + currentNum):
+			0;
+	},
 
-      currentRollScore = arrayOfOnes.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For updating number displayed under total
+	sortAndSet: (arr) => {
+		// sort from low to high number
+		let sorted = arr.map(x => x);
+		sorted.sort();
 
-      return currentRollScore; // For updating number under 1 on the scoreboard
+		// create a set to return
+		tempSet = new Set(sorted);
+		let sortedSet = [];
+		for (let item of tempSet) sortedSet.push(item);
 
-    //  2's Btn
-    case "p-btn-2":
-      let arrayOfTwos = currentDiceRolled.filter(num => ( num === 2 && num ));
+		return sortedSet;
+	},
 
-      currentRollScore = arrayOfTwos.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+	countNumberInArray: (arr, targetIndex) => {
+		let firstNumberCountArray = arr.filter((num, index, arr) => {
+			return num === arr[targetIndex];
+		});
+		
+		return firstNumberCountArray.length;
+	},
 
-      return currentRollScore; // Return score for current turn
+	/// VALIDATION CHECKS FOR VARIOUS SCORE CATEGORIES ///
+	checkYahtzee: function(arr) {
+		let arrayToCheck = this.sortAndSet(arr);
+  	return arrayToCheck.length === 1;
+	},
 
-    //  3's Btn
-    case "p-btn-3":
-      let arrayOfThrees = currentDiceRolled.filter(num => ( num === 3 && num ));
+	checkThreeKind: function(arr) {
+		let setArray = sortAndSet(arr);
+		return setArray.length < 4 ?
+			countNumberInArray(arr, 0) >= 3 ? 
+				true : 
+				countNumberInArray(arr, 1) >= 3 ? 
+					true : 
+						countNumberInArray(arr, 2) >= 3 ? 
+							true : false 
+			: false;
+	},
 
-      currentRollScore = arrayOfThrees.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore); // For adding total scores
+	checkFourKind: function(arr) {
+		return this.countNumberInArray(arr, 0) > 3 ? 
+			true :
+			countNumberInArray(arr, 0) === 1 && countNumberInArray(arr, 1) > 3;
+	},
 
-      return currentRollScore; // Return score for current turn
+	checkFullHouse: function(arr) {
+		let setArray = this.sortAndSet(arr);  
+		return setArray.length === 2 ?
+			countNumberInArray(arr, 0) === 3 || countNumberInArray(arr, 0) === 2 :
+			false;
+	},
 
-    //  4's Btn
-    case "p-btn-4":
-      let arrayOfFours = currentDiceRolled.filter(num => ( num === 4 && num ));
+	checkSmallStraight: function(arr) {
+		let arrayToCheck = this.sortAndSet(arr);
+		let count = 0;
+		arrayToCheck.forEach((num, index, arr2) => {
+			return count < 3 ? 
+				(index < arr2.length - 1) ?
+					(num + 1 === arr2[index + 1]) ?
+						count++ : count = 0	:
+					null :
+				null;
+		});
+		return count >= 3;
+	},
 
-      currentRollScore = arrayOfFours.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore);
+	checkLargeStraight: function(arr) {
+		let arrayToCheck = this.sortAndSet(arr);
+		let count = 0;
+		arrayToCheck.forEach((num, index, arr2) => {
+			return (index < arr2.length - 1)
+					&& (num + 1 === arr2[index + 1]) && count++;
+		});
+		return count >= 4;
+	},
 
-      return currentRollScore;
+	/// SCORE FOR 1 - 6 ///
+	"p-btn-1": function() {
+    	let filterdArray = this.filterNumbers(1);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-    //  5's Btn
-    case "p-btn-5":
-      let arrayOfFives = currentDiceRolled.filter(num => ( num === 5 && num ));
+	"p-btn-2": function() {
+    let filterdArray = this.filterNumbers(2);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-      currentRollScore = arrayOfFives.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore);
+	"p-btn-3": function() {
+    	let filterdArray = this.filterNumbers(3);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-      return currentRollScore;
+	"p-btn-4": function() {
+    let filterdArray = this.filterNumbers(4);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-    //  6's Btn
-    case "p-btn-6":
-      let arrayOfSixes = currentDiceRolled.filter(num => ( num === 6 && num ));
+	"p-btn-5": function() {
+    let filterdArray = this.filterNumbers(5);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-      currentRollScore = arrayOfSixes.reduce((total, currentNum) => total + currentNum);
-      plyrScore.push(currentRollScore);
-      
-      return currentRollScore;
+	"p-btn-6": function() {
+    let filterdArray = this.filterNumbers(6);
+		return this.getScoreSum(filterdArray); // For updating number under 1 on the scoreboard
+	},
 
-    //  Yahtzee Btn
-    case "p-btn-yahtzee":
-      checkYahtzee(currentDiceRolled) && (currentRollScore = 50);
-      plyrScore.push(currentRollScore); // For adding total scores
+	/// SCORE FOR OTHER SLOTS ///
+	"p-btn-yahtzee": function() {
+		return this.checkYahtzee(currentDiceRolled) ? 50 : 0;
+	},
 
-      return currentRollScore; // Return score for current turn
+	"p-btn-3x": function() {
+		return this.checkThreeKind(currentDiceRolled) ? 
+			( currentDiceRolled.reduce((a,b) => a + b) ) : 0;
+	},
 
-    //  3 of a kind Btn
-    case "p-btn-3x":
-      checkThreeKind(currentDiceRolled) && ( currentRollScore = currentDiceRolled.reduce( (a,b) => a + b ) );
-      plyrScore.push(currentRollScore); // For adding total scores
+	"p-btn-4x": function() {
+		return this.checkFourKind(currentDiceRolled) ? 
+			( currentDiceRolled.reduce((a,b) => a + b) ) : 0;
+	},
 
-      return currentRollScore; // Return score for current turn
+	"p-btn-fh": function() {
+		return this.checkFullHouse(currentDiceRolled) ? 25 : 0;
+	},
 
-    //  4 of a kind Btn
-    case "p-btn-4x":
-      checkFourKind(currentDiceRolled) && ( currentRollScore = currentDiceRolled.reduce( (a,b) => a + b ) );
-      plyrScore.push(currentRollScore); // For adding total scores
+	"p-btn-ss": function() {
+		return this.checkSmallStraight(currentDiceRolled) ? 30 : 0;
+	},
 
-      return currentRollScore; // Return score for current turn
+	"p-btn-ls": function() {
+		return this.checkLargeStraight(currentDiceRolled) ? 40 : 0;
+	},
 
-    // Full House Btn
-    case "p-btn-fh":
-      checkFullHouse(currentDiceRolled) && (currentRollScore = 25);
-      plyrScore.push(currentRollScore); // For adding total scores
-
-      return currentRollScore; // Return score for current turn
-
-    // Small Straight Btn
-    case "p-btn-ss":
-      checkSmallStraight(currentDiceRolled) && (currentRollScore = 30);
-      plyrScore.push(currentRollScore); // For adding total scores
-
-      return currentRollScore; // Return score for current turn
-
-    // Large Straight Btn
-    case "p-btn-ls":
-      checkLargeStraight(currentDiceRolled) && (currentRollScore = 40);
-      plyrScore.push(currentRollScore); // For adding total scores
-
-      return currentRollScore; // Return score for current turn
-
-    // Any Combo Btn
-    case "p-btn-any":
-      currentRollScore = currentDiceRolled.reduce( (a,b) => a + b )
-      plyrScore.push(currentRollScore); // For adding total scores
-
-      return currentRollScore; // Return score for current turn
-
-    default:
-      alert("Error");
-  };  
+	"p-btn-any": function() {
+		return currentDiceRolled.reduce( (a,b) => a + b );
+	},
+	
 };
