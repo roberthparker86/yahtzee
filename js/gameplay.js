@@ -14,19 +14,36 @@ $(function() { // .ready method shorthand
 	};
 
 	const setScore = (elem) => {
-		// return the appropriate selector class
+
+		//* Return the appropriate selector class
 		const returnScoreClass = (elem) => { 
 			return ($(elem).hasClass("score-btn")) ?
 				".score-val" : ($(elem).hasClass("score-btn-b")) ?
 					".score-val-b" : alert("returnScoreClass Error");
 		};
 
+		// get class, obtain score, then total up player score
 		const scoreRow = $(elem).parents(".score-row");
 		const scoreVal = scoreRow.find(returnScoreClass(elem));
 		const value = scoreCalc[$(elem).attr("id")]();
 		plyrScore.push(value);
 		const total = plyrScore.reduce( (a,b) => a + b );
 
+		/**
+		 * * Updated scoring method populating a playerScore object
+		 * get a "value" ID from btn ID to be used for updating both
+		 * the scoreObject and relevant scoreboard value html element
+		 */ 
+		const scoreValueElementId = `${elem.id}-value`;
+
+		/**
+		 * Use scoreValueElementId to update proper slot on playScoreValues
+		 */
+		playerScoreValues[scoreValueElementId] = value;
+		console.log(playerScoreValues);
+
+
+		// update relevant html element with new score
 		scoreVal.text(value);
 		scoreVal.addClass("hold");
 		$("#total").text(total);

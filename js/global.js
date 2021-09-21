@@ -19,7 +19,11 @@ const diceClass = {
       rollBtn = $("#roll"),
       roundNum = $(".round-num");
 
-// PLAYER SCORE BTN SELECTORS
+/**
+ * * CONTROLS FOR PLAYER SCORBOARD
+ */
+
+// Player Score Btn Selectors
 const playerScoreOneBtn = $('#p-btn-1');
 const playerScoreTwoBtn = $('#p-btn-2');
 const playerScoreThreeBtn = $('#p-btn-3');
@@ -33,6 +37,32 @@ const playerScoreSmStraightBtn = $('#p-btn-ss');
 const playerScoreLgStraightBtn = $('#p-btn-ls');
 const playerScoreAnyBtn = $('#p-btn-any');
 const playerScoreYahtzeeBtn = $('#p-btn-yahtzee');
+
+// Player Score Values Object
+const playerScoreValues = {
+	'p-btn-1-value': 0,
+	'p-btn-2-value': 0,
+	'p-btn-3-value': 0,
+	'p-btn-4-value': 0,
+	'p-btn-5-value': 0,
+	'p-btn-6-value': 0,
+	'p-btn-3x-value': 0,
+	'p-btn-4x-value': 0,
+	'p-btn-fh-value': 0,
+	'p-btn-ss-value': 0,
+	'p-btn-ls-value': 0,
+	'p-btn-any-value': 0,
+	'p-btn-yahtzee-value': 0
+}
+
+//TODO: Have setScore repopulate scoreboard from playerScoreValues on every button click
+
+//TODO: Remove former functionality and test for bugs
+
+/**
+ ** END CONTROLS FOR PLAYER SCOREBOARD
+ */
+
 
 let round = 0,
     currentDiceRolled = [],
