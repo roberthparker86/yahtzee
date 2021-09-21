@@ -57,4 +57,5 @@ $(function() { // .ready method shorthand
 			$(".message").hide();
 		}
 	});
+
 });

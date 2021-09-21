@@ -19,6 +19,21 @@ const diceClass = {
       rollBtn = $("#roll"),
       roundNum = $(".round-num");
 
+// PLAYER SCORE BTN SELECTORS
+const playerScoreOneBtn = $('#p-btn-1');
+const playerScoreTwoBtn = $('#p-btn-2');
+const playerScoreThreeBtn = $('#p-btn-3');
+const playerScoreFourBtn = $('#p-btn-4');
+const playerScoreFiveBtn = $('#p-btn-5');
+const playerScoreSixBtn = $('#p-btn-6');
+const playerScore3xBtn = $('#p-btn-3x');
+const playerScore4xBtn = $('#p-btn-4x');
+const playerScoreFullHouseBtn = $('#p-btn-fh');
+const playerScoreSmStraightBtn = $('#p-btn-ss');
+const playerScoreLgStraightBtn = $('#p-btn-ls');
+const playerScoreAnyBtn = $('#p-btn-any');
+const playerScoreYahtzeeBtn = $('#p-btn-yahtzee');
+
 let round = 0,
     currentDiceRolled = [],
     rollCount = 0,// Amount of dice rolls in current turn

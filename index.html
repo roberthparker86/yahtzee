@@ -20,6 +20,7 @@
 </head>
 
 <body>
+	<button id="test">Test</button>
   <div class="message">
     <p>
     </p>
@@ -32,6 +33,7 @@
 
     <!-- Player & Computer Icons & Scoreboards -->
     <div class="row scoreboard-row justify-content-center">
+
       <!-- Player scoreboard -->
       <div class="col-xl-5 scoreboard-container">
         <div class="board-header">
@@ -46,13 +48,14 @@
                 <button type="button" id="p-btn-1" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>1's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-1-value">0</td>
+
               <!-- 3 of a kind -->
               <td>
                 <button type="button" id="p-btn-3x" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th>3x</th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-3x-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -61,13 +64,14 @@
                 <button type="button" id="p-btn-2" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>2's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-2-value">0</td>
+
               <!-- 4 of a kind -->
               <td>
                 <button type="button" id="p-btn-4x" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th>4x</th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-4x-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -76,13 +80,14 @@
                 <button type="button" id="p-btn-3" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>3's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-3-value">0</td>
+
               <!-- Full house -->
               <td>
                 <button type="button" id="p-btn-fh" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th><i class="fas fa-home fa-2x"></i></th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-fh-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -91,13 +96,14 @@
                 <button type="button" id="p-btn-4" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>4's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-4-value">0</td>
+
               <!-- Small straight -->
               <td>
                 <button type="button" id="p-btn-ss" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th>Sm Straight</th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-ss-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -106,13 +112,14 @@
                 <button type="button" id="p-btn-5" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>5's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-5-value">0</td>
+
               <!-- Large Straight -->
               <td>
                 <button type="button" id="p-btn-ls" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th>Lg Straight</th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-ls-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -121,13 +128,14 @@
                 <button type="button" id="p-btn-6" class="btn btn-dark btn-sm score-btn"> + </buttonscore-btn>
               </td>
               <th>6's</th>
-              <td class="score-val">0</td>
+              <td class="score-val" id="p-btn-6-value">0</td>
+
               <!-- Any Combo -->
               <td>
                 <button type="button" id="p-btn-any" class="btn btn-dark btn-sm score-btn-b"> + </button>
               </td>
               <th>Any Combo</th>
-              <td class="score-val-b">0</td>
+              <td class="score-val-b" id="p-btn-any-value">0</td>
             </tr>
 
             <tr class="score-row">
@@ -136,8 +144,9 @@
                 <button type="button" id="p-btn-yahtzee" class="btn btn-dark btn-sm score-btn"> + </button>
               </td>
               <th>Yahtzee!</th>
-              <td class="score-val">0</td>
-              <!-- Computer TOTAL SCORE -->
+              <td class="score-val" id="p-btn-yahtzee-value">0</td>
+
+              <!-- PLAYER TOTAL SCORE -->
               <td></td>
               <th>Total:</th>
               <td id="total">0</td>
