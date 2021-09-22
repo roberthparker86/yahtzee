@@ -55,9 +55,11 @@ const playerScoreValues = {
 	'p-btn-yahtzee-value': 0
 }
 
-//TODO: Have setScore repopulate scoreboard from playerScoreValues on every button click
+//TODO: Remove unnecessary key/values such as plyrScore
 
-//TODO: Remove former functionality and test for bugs
+//? Will player score btn selectors be necessary after?
+
+//TODO: Test further for any bugs
 
 /**
  ** END CONTROLS FOR PLAYER SCOREBOARD

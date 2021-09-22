@@ -13,39 +13,41 @@ $(function() { // .ready method shorthand
 		}, 20);
 	};
 
+	const reducePlayerScoreValues = () => {
+		const scoresArray = [];
+
+		for (const prop in playerScoreValues) {
+			scoresArray.push(playerScoreValues[prop]);
+		}
+
+		return scoresArray.reduce((a,b) => a + b);
+	};
+
 	const setScore = (elem) => {
 
-		//* Return the appropriate selector class
-		const returnScoreClass = (elem) => { 
-			return ($(elem).hasClass("score-btn")) ?
-				".score-val" : ($(elem).hasClass("score-btn-b")) ?
-					".score-val-b" : alert("returnScoreClass Error");
-		};
-
-		// get class, obtain score, then total up player score
-		const scoreRow = $(elem).parents(".score-row");
-		const scoreVal = scoreRow.find(returnScoreClass(elem));
-		const value = scoreCalc[$(elem).attr("id")]();
-		plyrScore.push(value);
-		const total = plyrScore.reduce( (a,b) => a + b );
-
-		/**
-		 * * Updated scoring method populating a playerScore object
-		 * get a "value" ID from btn ID to be used for updating both
-		 * the scoreObject and relevant scoreboard value html element
+		/** Get a "value" ID from btn ID to be used for updating both
+		 *  the scoreObject and relevant scoreboard value html element
 		 */ 
 		const scoreValueElementId = `${elem.id}-value`;
 
-		/**
-		 * Use scoreValueElementId to update proper slot on playScoreValues
-		 */
+		// Set current dice score based on button clicked
+		const value = scoreCalc[elem.id]();
+
+		// Use scoreValueElementId to update proper slot on playScoreValues
 		playerScoreValues[scoreValueElementId] = value;
-		console.log(playerScoreValues);
+		const total = reducePlayerScoreValues();
 
+		/** Update the scorboard with playScoreValues utilizing
+		 *  for..in loops
+		 */
+		for (const prop in playerScoreValues) {
+			const valueElementToChange = $(`#${prop}`);
+			valueElementToChange.text(playerScoreValues[prop]);
+		}
 
-		// update relevant html element with new score
-		scoreVal.text(value);
-		scoreVal.addClass("hold");
+		/** Update Total HTML element with new score. Add hold class to clicked element
+		 *	Change player turn over to computer
+		 */
 		$("#total").text(total);
 		$(elem).addClass("hold");
 		plyrTurn++;
