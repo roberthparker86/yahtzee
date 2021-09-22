@@ -1,5 +1,11 @@
 /*jshint esversion: 6 */
 
+//TODO: BUG: Able to click score buttons before rolling at beginning of turn
+
+//TODO: Convert computer scoring system to a method similar to player scoring
+
+//TODO: Test further for any bugs
+
 //* GLOBAL VALUES
 
 const diceClass = {
@@ -39,24 +45,29 @@ const playerScoreValues = {
 	'p-btn-ss-value': 0,
 	'p-btn-ls-value': 0,
 	'p-btn-any-value': 0,
-	'p-btn-yahtzee-value': 0
+	'p-btn-yahtzee-value': 0,
+	'total': 0
 }
 
-//TODO: Make sure playerScoreValues is reset at beginning of new game
-
-//TODO: Test further for any bugs
+const populatePlayerScores = () => {
+	for (const prop in playerScoreValues) {
+		const valueElementToChange = $(`#${prop}`);
+		valueElementToChange.text(playerScoreValues[prop]);
+	};
+};
 
 /**
  ** END CONTROLS FOR PLAYER SCOREBOARD
  */
 
 
-let round = 0,
-    currentDiceRolled = [],
-    rollCount = 0,// Amount of dice rolls in current turn
-    plyrTurn = 0,
-    computerScoreArray = [],
-    playerTotal = 0; // Total score updated every turn for end of game compare
+let round = 0;
+let currentDiceRolled = [];
+
+// Amount of dice rolls in current turn
+let rollCount = 0;
+let plyrTurn = 0;
+let computerScoreArray = [];
 
 function btnFlash(count, max) { // Roll button flashes at start of turn
   rollBtn.toggleClass("lite");
@@ -346,15 +357,15 @@ function otherScore(array) {
 // +++ Check if Game Over +++
 function gameReset() {
   // Display GAME OVER message
-  if (parseInt($("#total").text(), 10) > parseInt($("#comp-total").text(), 10)) {
+  if ( playerScoreValues['total'] > parseInt($("#comp-total").text(), 10)) {
     $(".message").html("<h3>GAME OVER!</h3> <p>Player 1 Wins!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
-  if (parseInt($("#total").text(), 10) < parseInt($("#comp-total").text(), 10)) {
+  if ( playerScoreValues['total'] < parseInt($("#comp-total").text(), 10)) {
     $(".message").html("<h3>GAME OVER!</h3> <p>Computer Wins!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
-  if (parseInt($("#total").text(), 10) == parseInt($("#comp-total").text(), 10)) {
+  if ( playerScoreValues['total'] === parseInt($("#comp-total").text(), 10)) {
     $(".message").html("<h3>GAME OVER!</h3> <p>Tie!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
@@ -365,12 +376,17 @@ function gameReset() {
   rollCount = 0;
   plyrTurn = 0;
   computerScoreArray.length = 0;
-  playerTotal = 0;
+	
+	for (const prop in playerScoreValues) {
+		playerScoreValues[prop] = 0;
+	};
 
 	// Reset the HTML elements to 0
   $("table button").removeClass("hold"); // Remove .hold classes on buttons
   $(".hold").removeClass("hold"); // Remove all other .hold classes
-  $(".score-val, .score-val-b").text("0"); // Reset Player scoreboard
+
+  // Reset Player scoreboard
+	populatePlayerScores();
   $(".comp-score-val").text("0");// Write reset comp scoreboard here
 
 	
