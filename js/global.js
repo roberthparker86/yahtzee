@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
-/// Global values ///
+
+//* GLOBAL VALUES
+
 const diceClass = {
       '1': "fas fa-dice-one dice", // Classes that determine dice numbers
       '2': "fas fa-dice-two dice",
@@ -23,21 +25,6 @@ const diceClass = {
  * * CONTROLS FOR PLAYER SCORBOARD
  */
 
-// Player Score Btn Selectors
-const playerScoreOneBtn = $('#p-btn-1');
-const playerScoreTwoBtn = $('#p-btn-2');
-const playerScoreThreeBtn = $('#p-btn-3');
-const playerScoreFourBtn = $('#p-btn-4');
-const playerScoreFiveBtn = $('#p-btn-5');
-const playerScoreSixBtn = $('#p-btn-6');
-const playerScore3xBtn = $('#p-btn-3x');
-const playerScore4xBtn = $('#p-btn-4x');
-const playerScoreFullHouseBtn = $('#p-btn-fh');
-const playerScoreSmStraightBtn = $('#p-btn-ss');
-const playerScoreLgStraightBtn = $('#p-btn-ls');
-const playerScoreAnyBtn = $('#p-btn-any');
-const playerScoreYahtzeeBtn = $('#p-btn-yahtzee');
-
 // Player Score Values Object
 const playerScoreValues = {
 	'p-btn-1-value': 0,
@@ -55,9 +42,7 @@ const playerScoreValues = {
 	'p-btn-yahtzee-value': 0
 }
 
-//TODO: Remove unnecessary key/values such as plyrScore
-
-//? Will player score btn selectors be necessary after?
+//TODO: Make sure playerScoreValues is reset at beginning of new game
 
 //TODO: Test further for any bugs
 
@@ -70,7 +55,6 @@ let round = 0,
     currentDiceRolled = [],
     rollCount = 0,// Amount of dice rolls in current turn
     plyrTurn = 0,
-    plyrScore = [0], // Array for holding player score to sum up every round
     computerScoreArray = [],
     playerTotal = 0; // Total score updated every turn for end of game compare
 
@@ -162,6 +146,7 @@ function checkThreeKind(array) {
 
 // +++ Check Player's Turn +++
 function plyrCheck() {
+
   if (plyrTurn == 1) {
     $(".message").text("Computer Turn!");
     setTimeout(() => { $(".message").show(); }, 20);
@@ -169,10 +154,13 @@ function plyrCheck() {
     currentDiceRolled.length = 0;
     $("div i").removeClass("hold");
     compRollDice();
+
   } else if (plyrTurn > 1) {
     round++;
+
     if (round == 14) {
       gameReset();
+
     } else {
       roundNum.text(round);
       plyrTurn = 0;
@@ -182,8 +170,8 @@ function plyrCheck() {
       setTimeout( () => {
         btnFlash(0,6);
       }, 50);
-
     }
+
   }
 }
 
@@ -344,8 +332,9 @@ function mode(array) {
 }
 
 function otherScore(array) {
-  let arrMode = mode(array),
-      sum = 0;
+  let arrMode = mode(array);
+  let sum = 0;
+
   for (let i = 0; i < array.length; i++) {
     if (array[i] === arrMode) {
       sum += arrMode;
@@ -369,16 +358,20 @@ function gameReset() {
     $(".message").html("<h3>GAME OVER!</h3> <p>Tie!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
-  round = 0; // Reset values
+
+	// Reset values for scorekeeping and round count
+  round = 0; 
   currentDiceRolled.length = 0;
   rollCount = 0;
   plyrTurn = 0;
-  plyrScore.length = 0;
-  plyrScore.push(0);
   computerScoreArray.length = 0;
   playerTotal = 0;
+
+	// Reset the HTML elements to 0
   $("table button").removeClass("hold"); // Remove .hold classes on buttons
   $(".hold").removeClass("hold"); // Remove all other .hold classes
   $(".score-val, .score-val-b").text("0"); // Reset Player scoreboard
   $(".comp-score-val").text("0");// Write reset comp scoreboard here
+
+	
 }
