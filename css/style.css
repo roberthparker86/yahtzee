@@ -90,11 +90,16 @@ h1.main-title {
     drop-shadow(0 .65rem 0 var(--light-purple));
 }
 
-.icons__container {
+.icons-container {
   background-image: linear-gradient(to top, var(--dark-purple), var(--teal));
-  mask: url(/img/icon_Player-white.svg) no-repeat;
   height: 10rem;
   width: 10rem;
+}
+.icons-container--player {
+  mask: url(/img/icon_Player-white.svg) no-repeat;
+}
+.icons-container--computer {
+  mask: url(/img/icon_Computer-white.svg) no-repeat;
 }
 
 .icons {
