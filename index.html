@@ -2,299 +2,310 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Space Yahtzee!!!</title>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Space Yahtzee!!!</title>
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 CSS-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Bootstrap 5 CSS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/04aca8327c.js" crossorigin="anonymous"></script>
+	<!-- Font Awesome CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/04aca8327c.js" crossorigin="anonymous"></script>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-dark-blue">
-  <div class="container pt-4">
-    <div class="d-flex justify-content-center mb-5 w-100">
-      <h1 class="text-uppercase text-red fw-bold main-title">Space Yahtzee!</h1>
-    </div>
+	<div class="container pt-4 mb-3">
+		<div class="d-flex justify-content-center mb-5 w-100">
+			<h1 class="text-uppercase text-red fw-bold main-title">Space Yahtzee!</h1>
+		</div>
 
-    <!-- Scorboards -->
-    <div class="w-100">
+		<!-- Dice and Scoreboard -->
+		<div class="row">
+			<div class="col-2 p-2 p-lg-3">
 
-      <!-- Player scoreboard -->
-      <div class="bg-light-red container d-flex flex-column rounded-top mb-3">
-        <div class="row justify-content-center align-items-center p-2">
-          <div class="icons-container icons-container--player">
-          </div>
-          <div class="text-center w-25">
-            <h1 class="text-light-purple">Player 1</h1>
-          </div>
-        </div>
+				<!-- Dice interface -->
+				<div class="border border-2 box-glow-red rounded p-2 h-100">					
+					<div class="text-center my-4 w-100">
+						<button id="roll" class="btn btn-lg btn-primary">Click to start</button>
+					</div>
+					<div class="d-flex flex-column justify-content-evenly align-items-center">
+						<i id="icon1" class="fas fa-dice-two dice py-2"></i>
+						<i id="icon2" class="fas fa-dice-two dice py-2"></i>
+						<i id="icon3" class="fas fa-dice-two dice py-2"></i>
+						<i id="icon4" class="fas fa-dice-one dice py-2"></i>
+						<i id="icon5" class="fas fa-dice-one dice py-2"></i>
+					</div>
+				</div>
+				<!-- Dice interface end -->
 
-        <div class="row bg-white p-3 text-purple">
-          <!-- 1's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-1" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Ones</h5>
-            <h5 class="m-0" id="p-btn-1-value">0</h5>
-          </div>
-          <!-- 1's end -->
+			</div>
 
-          <!-- 2's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-2" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Twos</h5>
-            <h5 class="m-0" id="p-btn-2-value">0</h5>
-          </div>
-          <!-- 2's end -->
+			<!-- Scorboards -->
+			<div class="col-10 p-2 p-lg-3">        
+				<div class="bg-transparent border border-2 border-white rounded box-glow-red w-100">
 
-          <!-- 3's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-3" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Threes</h5>
-            <h5 class="m-0" id="p-btn-3-value">0</h5>
-          </div>
-          <!-- 3's end -->
+					<!-- Player scoreboard -->
+					<div class="container d-flex flex-column mb-3 mb-lg-4">
+						<div class="row justify-content-center align-items-center p-2">
+							<img src="/img/icon_Player-white.svg" alt="" class="icons glow-teal">
+							<div class="text-center w-25">
+								<h1 class="text-uppercase text-red fw-bold player-title">Player 1</h1>
+							</div>
+						</div>
 
-          <!-- 4's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-4" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Fours</h5>
-            <h5 class="m-0" id="p-btn-4-value">0</h5>
-          </div>
-          <!-- 4's end -->
+						<div id="player-board" class="row scoreboard p-3 text-white active-turn">
+							<!-- 1's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-1" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Ones</h5>
+								<h5 class="m-0" id="p-btn-1-value">0</h5>
+							</div>
+							<!-- 1's end -->
 
-          <!-- 5's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-5" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Fives</h5>
-            <h5 class="m-0" id="p-btn-5-value">0</h5>
-          </div>
-          <!-- 5's end -->
+							<!-- 2's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-2" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Twos</h5>
+								<h5 class="m-0" id="p-btn-2-value">0</h5>
+							</div>
+							<!-- 2's end -->
 
-          <!-- 6's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-6" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Sixes</h5>
-            <h5 class="m-0" id="p-btn-6-value">0</h5>
-          </div>
-          <!-- 6's end -->
+							<!-- 3's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-3" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Threes</h5>
+								<h5 class="m-0" id="p-btn-3-value">0</h5>
+							</div>
+							<!-- 3's end -->
 
-          <!-- 3 of a kind -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-3x" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Three of A Kind</h5>
-            <h5 class="m-0" id="p-btn-3x-value">0</h5>
-          </div>
-          <!-- 3 of a kind end -->
+							<!-- 4's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-4" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Fours</h5>
+								<h5 class="m-0" id="p-btn-4-value">0</h5>
+							</div>
+							<!-- 4's end -->
 
-          <!-- 4 of a kind -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-4x" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Four of A Kind</h5>
-            <h5 class="mb-0" id="p-btn-4x-value">0</h5>
-          </div>
-          <!-- 4 of a kind end -->
+							<!-- 5's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-5" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Fives</h5>
+								<h5 class="m-0" id="p-btn-5-value">0</h5>
+							</div>
+							<!-- 5's end -->
 
-          <!-- Full House -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-fh" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Full House</h5>
-            <h5 class="mb-0" id="p-btn-fh-value">0</h5>
-          </div>
-          <!-- Full House end -->
+							<!-- 6's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-6" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Sixes</h5>
+								<h5 class="m-0" id="p-btn-6-value">0</h5>
+							</div>
+							<!-- 6's end -->
 
-          <!-- Small Straight -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-ss" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Small Straight</h5>
-            <h5 class="mb-0" id="p-btn-ss-value">0</h5>
-          </div>
-          <!-- Small Straight end -->
+							<!-- 3 of a kind -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-3x" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Three of A Kind</h5>
+								<h5 class="m-0" id="p-btn-3x-value">0</h5>
+							</div>
+							<!-- 3 of a kind end -->
 
-          <!-- Large Straight -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-ls" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Large Straight</h5>
-            <h5 class="mb-0" id="p-btn-ls-value">0</h5>
-          </div>
-          <!-- Large Straight end -->
+							<!-- 4 of a kind -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-4x" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Four of A Kind</h5>
+								<h5 class="mb-0" id="p-btn-4x-value">0</h5>
+							</div>
+							<!-- 4 of a kind end -->
 
-          <!-- Any Combo -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-any" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Any Combo</h5>
-            <h5 class="mb-0" id="p-btn-any-value">0</h5>
-          </div>
-          <!-- Any Combo end -->
+							<!-- Full House -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-fh" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Full House</h5>
+								<h5 class="mb-0" id="p-btn-fh-value">0</h5>
+							</div>
+							<!-- Full House end -->
 
-          <!-- Yahtzee -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3">+</button>
-            <h5 class="m-0 me-3">Yahtzee</h5>
-            <h5 class="mb-0" id="p-btn-yahtzee-value">0</h5>
-          </div>
-          <!-- Yahtzee end -->
+							<!-- Small Straight -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-ss" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Small Straight</h5>
+								<h5 class="mb-0" id="p-btn-ss-value">0</h5>
+							</div>
+							<!-- Small Straight end -->
 
-        </div>
+							<!-- Large Straight -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-ls" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Large Straight</h5>
+								<h5 class="mb-0" id="p-btn-ls-value">0</h5>
+							</div>
+							<!-- Large Straight end -->
 
-        <!-- Total section -->
-        <div class="d-flex justify-content-center align-items-center p-3">
-          <h2 class="text-purple m-0 me-3">Total:</h2>
-          <h2 id="total" class="text-purple m-0">0</h2>
-        </div>
-        <!-- Total section end -->
-      </div>
-      <!-- Player scoreboard end -->
+							<!-- Any Combo -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-any" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Any Combo</h5>
+								<h5 class="mb-0" id="p-btn-any-value">0</h5>
+							</div>
+							<!-- Any Combo end -->
 
-      <!-- Computer scoreboard -->
-      <div class="bg-light-red container d-none flex-column rounded-top mb-3">
-        <div class="row justify-content-center align-items-center p-2">
-          <div class="icons-container icons-container--computer">
-          </div>
-          <div class="text-center w-25">
-            <h1 class="text-light-purple">Computer</h1>
-          </div>
-        </div>
+							<!-- Yahtzee -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3">+</button>
+								<h5 class="m-0 me-3">Yahtzee</h5>
+								<h5 class="mb-0" id="p-btn-yahtzee-value">0</h5>
+							</div>
+							<!-- Yahtzee end -->
 
-        <div class="row bg-white p-3 text-purple">
-          <!-- 1's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Ones</h5>
-            <h5 class="m-0 comp-score-val" id="c-one">0</h5>
-          </div>
-          <!-- 1's end -->
+						</div>
 
-          <!-- 2's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Twos</h5>
-            <h5 class="m-0" id="c-two">0</h5>
-          </div>
-          <!-- 2's end -->
+						<!-- Total section -->
+						<div class="d-flex justify-content-center align-items-center p-2">
+							<h2 class="text-red total m-0 me-3">Total:</h2>
+							<h2 id="total" class="text-white glow-teal m-0">0</h2>
+						</div>
+						<!-- Total section end -->
+					</div>
+					<!-- Player scoreboard end -->
 
-          <!-- 3's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Threes</h5>
-            <h5 class="m-0" id="c-three">0</h5>
-          </div>
-          <!-- 3's end -->
+					<!-- Computer scoreboard -->
+					<div class="container d-flex flex-column mb-3 mb-lg-4">
+						<div class="row justify-content-center align-items-center p-2">
+							<img src="/img/icon_Computer-white.svg" alt="" class="icons glow-teal">
+							<div class="text-center w-25">
+								<h1 class="text-uppercase text-red fw-bold player-title">Computer</h1>
+							</div>
+						</div>
 
-          <!-- 4's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Fours</h5>
-            <h5 class="m-0" id="c-four">0</h5>
-          </div>
-          <!-- 4's end -->
+						<div id="comp-board" class="row scoreboard score-container p-3 text-white">
+							<!-- 1's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Ones</h5>
+								<h5 class="m-0 comp-score-val" id="c-one">0</h5>
+							</div>
+							<!-- 1's end -->
 
-          <!-- 5's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Fives</h5>
-            <h5 class="m-0" id="c-five">0</h5>
-          </div>
-          <!-- 5's end -->
+							<!-- 2's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Twos</h5>
+								<h5 class="m-0" id="c-two">0</h5>
+							</div>
+							<!-- 2's end -->
 
-          <!-- 6's -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Sixes</h5>
-            <h5 class="m-0" id="c-six">0</h5>
-          </div>
-          <!-- 6's end -->
+							<!-- 3's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Threes</h5>
+								<h5 class="m-0" id="c-three">0</h5>
+							</div>
+							<!-- 3's end -->
 
-          <!-- 3 of a kind -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Three of A Kind</h5>
-            <h5 class="m-0" id="c-threex">0</h5>
-          </div>
-          <!-- 3 of a kind end -->
+							<!-- 4's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Fours</h5>
+								<h5 class="m-0" id="c-four">0</h5>
+							</div>
+							<!-- 4's end -->
 
-          <!-- 4 of a kind -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Four of A Kind</h5>
-            <h5 class="mb-0" id="c-fourx">0</h5>
-          </div>
-          <!-- 4 of a kind end -->
+							<!-- 5's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Fives</h5>
+								<h5 class="m-0" id="c-five">0</h5>
+							</div>
+							<!-- 5's end -->
 
-          <!-- Full House -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Full House</h5>
-            <h5 class="mb-0" id="c-fh">0</h5>
-          </div>
-          <!-- Full House end -->
+							<!-- 6's -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Sixes</h5>
+								<h5 class="m-0" id="c-six">0</h5>
+							</div>
+							<!-- 6's end -->
 
-          <!-- Small Straight -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Small Straight</h5>
-            <h5 class="mb-0" id="c-ss">0</h5>
-          </div>
-          <!-- Small Straight end -->
+							<!-- 3 of a kind -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Three of A Kind</h5>
+								<h5 class="m-0" id="c-threex">0</h5>
+							</div>
+							<!-- 3 of a kind end -->
 
-          <!-- Large Straight -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Large Straight</h5>
-            <h5 class="mb-0" id="c-ls">0</h5>
-          </div>
-          <!-- Large Straight end -->
+							<!-- 4 of a kind -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Four of A Kind</h5>
+								<h5 class="mb-0" id="c-fourx">0</h5>
+							</div>
+							<!-- 4 of a kind end -->
 
-          <!-- Any Combo -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Any Combo</h5>
-            <h5 class="mb-0" id="c-any">0</h5>
-          </div>
-          <!-- Any Combo end -->
+							<!-- Full House -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Full House</h5>
+								<h5 class="mb-0" id="c-fh">0</h5>
+							</div>
+							<!-- Full House end -->
 
-          <!-- Yahtzee -->
-          <div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-            <h5 class="m-0 me-3">Yahtzee</h5>
-            <h5 class="mb-0" id="c-yahtzee">0</h5>
-          </div>
-          <!-- Yahtzee end -->
+							<!-- Small Straight -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Small Straight</h5>
+								<h5 class="mb-0" id="c-ss">0</h5>
+							</div>
+							<!-- Small Straight end -->
 
-        </div>
+							<!-- Large Straight -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Large Straight</h5>
+								<h5 class="mb-0" id="c-ls">0</h5>
+							</div>
+							<!-- Large Straight end -->
 
-        <!-- Total section -->
-        <div class="d-flex justify-content-center align-items-center p-3">
-          <h2 class="text-purple m-0 me-3">Total:</h2>
-          <h2 id="comp-total" class="text-purple m-0">0</h2>
-        </div>
-        <!-- Total section end -->
-      </div>
-      <!-- Computer scoreboard end -->
+							<!-- Any Combo -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Any Combo</h5>
+								<h5 class="mb-0" id="c-any">0</h5>
+							</div>
+							<!-- Any Combo end -->
 
-    </div>
-    <!-- Scoreboards end -->
+							<!-- Yahtzee -->
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+								<h5 class="m-0 me-3">Yahtzee</h5>
+								<h5 class="mb-0" id="c-yahtzee">0</h5>
+							</div>
+							<!-- Yahtzee end -->
 
-    <!-- Dice interface -->
-    <div class="text-center w-100">
-      <button id="roll" class="btn btn-primary">Click to start</button>
-    </div>
-    <div class="d-flex justify-content-evenly">
-      <i id="icon1" class="fas fa-dice-two dice"></i>
-      <i id="icon2" class="fas fa-dice-two dice"></i>
-      <i id="icon3" class="fas fa-dice-two dice"></i>
-      <i id="icon4" class="fas fa-dice-one dice"></i>
-      <i id="icon5" class="fas fa-dice-one dice"></i>
-    </div>
-    <!-- Dice interface end -->
+						</div>
 
-  </div>
-  <!-- JQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+						<!-- Total section -->
+						<div class="d-flex justify-content-center align-items-center p-3">
+							<h2 class="text-red total m-0 me-3">Total:</h2>
+							<h2 id="comp-total" class="text-white glow-teal m-0">0</h2>
+						</div>
+						<!-- Total section end -->
+					</div>
+					<!-- Computer scoreboard end -->
 
-  <!-- Bootstrap 5 JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+				</div>
+			</div>
+			<!-- Scoreboards end -->
 
-  <!-- Custom JS -->
-  <script src="js/global.js" charset="utf-8"></script>
-  <script src="js/calculateScore.js" charset="utf-8"></script>
-  <script src="js/dice.js" charset="utf-8"></script>
-  <script src="js/gameplay.js" charset="utf-8"></script>
+		</div>
+		<!-- Dice and Scoreboard end -->
+
+	</div>
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Bootstrap 5 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+	<!-- Custom JS -->
+	<script src="js/global.js" charset="utf-8"></script>
+	<script src="js/calculateScore.js" charset="utf-8"></script>
+	<script src="js/dice.js" charset="utf-8"></script>
+	<script src="js/gameplay.js" charset="utf-8"></script>
 </body>
 
 </html>

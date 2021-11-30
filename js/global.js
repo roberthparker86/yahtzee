@@ -159,6 +159,8 @@ function checkThreeKind(array) {
 function plyrCheck() {
 
   if (plyrTurn == 1) {
+    
+    $('.scoreboard').toggleClass('active-turn');
     $(".message").text("Computer Turn!");
     setTimeout(() => { $(".message").show(); }, 20);
     rollCount = 0;
@@ -171,8 +173,9 @@ function plyrCheck() {
 
     if (round == 14) {
       gameReset();
-
     } else {
+
+      $('.scoreboard').toggleClass('active-turn');
       roundNum.text(round);
       plyrTurn = 0;
       rollCount = 0;
@@ -181,6 +184,7 @@ function plyrCheck() {
       setTimeout( () => {
         btnFlash(0,6);
       }, 50);
+
     }
 
   }
