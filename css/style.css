@@ -125,6 +125,7 @@ body {
   background-color: var(--red);
   color: var(--white);
   border: none;
+  width: 100%;
 }
 .btn-primary:active,
 .btn-primary:focus,
@@ -194,14 +195,17 @@ h2.total {
 
 /* Player scoreboard toggle behavior */
 .scoreboard {
-  display: none;
+  display: flex;
+  height: 0;
   opacity: 0;
-  transition: opacity .25s ease-in-out;
+  overflow: hidden;
+  transition: all .25s ease-in-out;
 }
 
 .active-turn {
-  display: flex !important;
-  opacity: 1 !important;
+  height: 18rem;
+  opacity: 1;
+  overflow: visible;
 }
 
 .dice {

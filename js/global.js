@@ -23,7 +23,7 @@ const diceClass = {
         '4': $("#icon4"),
         '5': $("#icon5")
       },
-      iconArr = [icon[1], icon[2], icon[3], icon[4], icon[5]], // Holds icons for iterating
+      iconArr = [ icon[1], icon[2], icon[3], icon[4], icon[5] ], // Holds icons for iterating
       rollBtn = $("#roll"),
       roundNum = $(".round-num");
 
@@ -358,18 +358,24 @@ function otherScore(array) {
   return sum;
 }
 
-// +++ Check if Game Over +++
+// Check if Game Over
 function gameReset() {
+
   // Display GAME OVER message
   if ( playerScoreValues['total'] > parseInt($("#comp-total").text(), 10)) {
+
     $(".message").html("<h3>GAME OVER!</h3> <p>Player 1 Wins!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
+
   if ( playerScoreValues['total'] < parseInt($("#comp-total").text(), 10)) {
+
     $(".message").html("<h3>GAME OVER!</h3> <p>Computer Wins!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
+
   if ( playerScoreValues['total'] === parseInt($("#comp-total").text(), 10)) {
+
     $(".message").html("<h3>GAME OVER!</h3> <p>Tie!<br> Click to restart.</p>");
     setTimeout(function(){ $(".message").show(); }, 20);
   }
@@ -381,8 +387,8 @@ function gameReset() {
   plyrTurn = 0;
   computerScoreArray.length = 0;
 	
-	for (const prop in playerScoreValues) {
-		playerScoreValues[prop] = 0;
+	for (const scoreValue in playerScoreValues) {
+		playerScoreValues[scoreValue] = 0;
 	};
 
 	// Reset the HTML elements to 0

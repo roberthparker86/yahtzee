@@ -32,7 +32,7 @@
 				<!-- Dice interface -->
 				<div class="border border-2 box-glow-red rounded p-2 h-100">					
 					<div class="text-center my-4 w-100">
-						<button id="roll" class="btn btn-lg btn-primary">Click to start</button>
+						<button id="roll" class="btn btn-lg btn-primary w-auto">Click to start</button>
 					</div>
 					<div class="d-flex flex-column justify-content-evenly align-items-center">
 						<i id="icon1" class="fas fa-dice-two dice py-2"></i>
@@ -59,108 +59,95 @@
 							</div>
 						</div>
 
-						<div id="player-board" class="row scoreboard p-3 text-white active-turn">
+						<div id="player-board" class="row scoreboard m-3 text-white active-turn">
 							<!-- 1's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-1" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Ones</h5>
-								<h5 class="m-0" id="p-btn-1-value">0</h5>
+								<button id="p-btn-1" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Ones</button>
+								<h3 class="m-0" id="p-btn-1-value">0</h3>
 							</div>
 							<!-- 1's end -->
 
 							<!-- 2's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-2" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Twos</h5>
-								<h5 class="m-0" id="p-btn-2-value">0</h5>
+								<button id="p-btn-2" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Twos</button>
+								<h3 class="m-0" id="p-btn-2-value">0</h3>
 							</div>
 							<!-- 2's end -->
 
 							<!-- 3's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-3" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Threes</h5>
-								<h5 class="m-0" id="p-btn-3-value">0</h5>
+								<button id="p-btn-3" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Threes</button>
+								<h3 class="m-0" id="p-btn-3-value">0</h3>
 							</div>
 							<!-- 3's end -->
 
 							<!-- 4's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-4" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Fours</h5>
-								<h5 class="m-0" id="p-btn-4-value">0</h5>
+								<button id="p-btn-4" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Fours</button>
+								<h3 class="m-0" id="p-btn-4-value">0</h3>
 							</div>
 							<!-- 4's end -->
 
 							<!-- 5's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-5" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Fives</h5>
-								<h5 class="m-0" id="p-btn-5-value">0</h5>
+								<button id="p-btn-5" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Fives</button>
+								<h3 class="m-0" id="p-btn-5-value">0</h3>
 							</div>
 							<!-- 5's end -->
 
 							<!-- 6's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-6" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Sixes</h5>
-								<h5 class="m-0" id="p-btn-6-value">0</h5>
+								<button id="p-btn-6" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Sixes</button>
+								<h3 class="m-0" id="p-btn-6-value">0</h3>
 							</div>
 							<!-- 6's end -->
 
 							<!-- 3 of a kind -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-3x" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Three of A Kind</h5>
-								<h5 class="m-0" id="p-btn-3x-value">0</h5>
+								<button id="p-btn-3x" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Three of A Kind</button>
+								<h3 class="m-0" id="p-btn-3x-value">0</h3>
 							</div>
 							<!-- 3 of a kind end -->
 
 							<!-- 4 of a kind -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-4x" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Four of A Kind</h5>
-								<h5 class="mb-0" id="p-btn-4x-value">0</h5>
+								<button id="p-btn-4x" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Four of A Kind</button>
+								<h3 class="mb-0" id="p-btn-4x-value">0</h3>
 							</div>
 							<!-- 4 of a kind end -->
 
 							<!-- Full House -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-fh" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Full House</h5>
-								<h5 class="mb-0" id="p-btn-fh-value">0</h5>
+								<button id="p-btn-fh" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Full House</button>
+								<h3 class="mb-0" id="p-btn-fh-value">0</h3>
 							</div>
 							<!-- Full House end -->
 
 							<!-- Small Straight -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-ss" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Small Straight</h5>
-								<h5 class="mb-0" id="p-btn-ss-value">0</h5>
+								<button id="p-btn-ss" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Small Straight</button>
+								<h3 class="mb-0" id="p-btn-ss-value">0</h3>
 							</div>
 							<!-- Small Straight end -->
 
 							<!-- Large Straight -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-ls" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Large Straight</h5>
-								<h5 class="mb-0" id="p-btn-ls-value">0</h5>
+								<button id="p-btn-ls" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Large Straight</button>
+								<h3 class="mb-0" id="p-btn-ls-value">0</h3>
 							</div>
 							<!-- Large Straight end -->
 
 							<!-- Any Combo -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-any" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Any Combo</h5>
-								<h5 class="mb-0" id="p-btn-any-value">0</h5>
+								<button id="p-btn-any" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Any Combo</button>
+								<h3 class="mb-0" id="p-btn-any-value">0</h3>
 							</div>
 							<!-- Any Combo end -->
 
 							<!-- Yahtzee -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3">+</button>
-								<h5 class="m-0 me-3">Yahtzee</h5>
-								<h5 class="mb-0" id="p-btn-yahtzee-value">0</h5>
+								<button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Yahtzee</button>
+								<h3 class="mb-0" id="p-btn-yahtzee-value">0</h3>
 							</div>
 							<!-- Yahtzee end -->
 
@@ -184,7 +171,7 @@
 							</div>
 						</div>
 
-						<div id="comp-board" class="row scoreboard score-container p-3 text-white">
+						<div id="comp-board" class="row scoreboard score-container m-3 text-white">
 							<!-- 1's -->
 							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
 								<h5 class="m-0 me-3">Ones</h5>
