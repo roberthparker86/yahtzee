@@ -1,15 +1,16 @@
 /*jshint esversion: 6 */
-$(function() { // .ready method shorthand
+$(function() { 
 
- /// Controls for the score buttons ///
+  // Controls for the score buttons
 	const checkHold = (elem) => $(elem).hasClass("hold");
 
 	const checkRoundZero = () => round === 0;
 
-	const message = (string) => { // Pops up message window with passed string
-		$(".message").text(string);
+  // Pops up message window with passed string
+	const message = (string) => { 
+		$(".modal-body").text(string);
 		setTimeout( () => {
-			$(".message").show();
+			modal.show();
 		}, 20);
 	};
 
@@ -57,13 +58,6 @@ $(function() { // .ready method shorthand
 	//  Bind event handler to score buttons
 	$(".score-btn").on("click", function() { 
 		handleScoreClick(this);
-	});
-
-	// Hide pop up message when screen is clicked
-	$("body").on("click", function() {
-		if ($(".message").is(":visible")) {
-			$(".message").hide();
-		}
 	});
 
 });

@@ -1,7 +1,5 @@
 /*jshint esversion: 6 */
-
-///// Dice roll functions /////
-
+// Dice roll functions
 const randNum = () => Math.ceil(Math.random() * 6); // Generates random number
 
 const diceRoll = (arr) => { // Rolls new hand of dice. Ignore dice with ".hold" class
@@ -69,3 +67,4 @@ $("#icon1, #icon2, #icon3, #icon4, #icon5").click( function() {
     }
   }
 });
+
