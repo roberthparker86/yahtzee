@@ -193,6 +193,16 @@ h2.total {
     drop-shadow(0 0 1rem var(--light-teal));
 }
 
+/* Scoreboard responsive behaviors */
+.scoreboard__cell button {
+  font-size: 1rem;
+}
+@media screen and (min-width: 1200px) {
+  .scoreboard__cell button {
+    font-size: 1.25rem;
+  }  
+}
+
 /* Player scoreboard toggle behavior */
 .scoreboard {
   display: flex;
@@ -229,4 +239,8 @@ h2.total {
   filter: 
     drop-shadow(0 0 .5rem var(--red))
     drop-shadow(0 0 1rem var(--light-red));
+}
+
+.container__dice {
+  height: fit-content;
 }

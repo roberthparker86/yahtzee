@@ -195,10 +195,12 @@ function plyrCheck() {
 }
 
 // +++ Computer's Turn +++
-function compRollDice() {
+function compRollDice() 
+{
   diceRoll(iconArr); // Populate currentDiceRolled for comp turn
-  for (let i = 1; i < 6; i++) { // Shuffle
-      setTimeout(shuffleDie(i,0,5), ((i-1) * 250) );
+  for (let i = 1; i < 6; i++) 
+  { // Shuffle
+    setTimeout(shuffleDie(i,0,5), ((i-1) * 250) );
   }
   rollCount++;
   currentDiceRolled.sort((a,b) => a-b); // Sort array in ascending order

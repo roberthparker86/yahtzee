@@ -20,14 +20,15 @@
 </head>
 
 <body class="bg-dark-blue">
-	<div class="container pt-4 mb-3">
-		<div class="d-flex justify-content-center mb-5 w-100">
-			<h1 class="text-uppercase text-red fw-bold main-title">Space Yahtzee!</h1>
-		</div>
+  <div class="d-flex justify-content-center my-2 w-100">
+    <h1 class="text-uppercase text-red fw-bold main-title">Space Yahtzee!</h1>
+  </div>
+
+	<main class="container-fluid pt-4 px-5 mb-3">
 
 		<!-- Dice and Scoreboard -->
-		<div class="row">
-			<div class="col-2 p-2 p-lg-3">
+		<div class="row"> 
+			<aside class="col-2 container__dice p-2 p-lg-3">
 
 				<!-- Dice interface -->
 				<div class="border border-2 box-glow-red rounded p-2 h-100">					
@@ -44,7 +45,7 @@
 				</div>
 				<!-- Dice interface end -->
 
-			</div>
+			</aside>
 
       <!-- Scorboard Modal -->
       <div class="modal fade" id="message-box">
@@ -62,11 +63,11 @@
       </div>
 
 			<!-- Scorboards -->
-			<div class="col-10 p-2 p-lg-3">        
+			<article class="col-10 p-2 p-lg-3">        
 				<div class="bg-transparent border border-2 border-white rounded box-glow-red w-100">
 
 					<!-- Player scoreboard -->
-					<div class="container d-flex flex-column mb-3 mb-lg-4">
+					<section class="container d-flex flex-column mb-3 mb-lg-4">
 						<div class="row justify-content-center align-items-center p-2">
 							<img src="img/icon_Player-white.svg" alt="" class="icons glow-teal">
 							<div class="text-center w-25">
@@ -76,92 +77,92 @@
 
 						<div id="player-board" class="row scoreboard m-3 text-white active-turn">
 							<!-- 1's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-1" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Ones</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-1" class="btn btn-primary score-btn me-3 fw-bold">Ones</button>
 								<h3 class="m-0" id="p-btn-1-value">0</h3>
 							</div>
 							<!-- 1's end -->
 
 							<!-- 2's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-2" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Twos</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-2" class="btn btn-primary score-btn me-3 fw-bold">Twos</button>
 								<h3 class="m-0" id="p-btn-2-value">0</h3>
 							</div>
 							<!-- 2's end -->
 
 							<!-- 3's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-3" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Threes</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-3" class="btn btn-primary score-btn me-3 fw-bold">Threes</button>
 								<h3 class="m-0" id="p-btn-3-value">0</h3>
 							</div>
 							<!-- 3's end -->
 
 							<!-- 4's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-4" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Fours</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-4" class="btn btn-primary score-btn me-3 fw-bold">Fours</button>
 								<h3 class="m-0" id="p-btn-4-value">0</h3>
 							</div>
 							<!-- 4's end -->
 
 							<!-- 5's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-5" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Fives</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-5" class="btn btn-primary score-btn me-3 fw-bold">Fives</button>
 								<h3 class="m-0" id="p-btn-5-value">0</h3>
 							</div>
 							<!-- 5's end -->
 
 							<!-- 6's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-6" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Sixes</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-6" class="btn btn-primary score-btn me-3 fw-bold">Sixes</button>
 								<h3 class="m-0" id="p-btn-6-value">0</h3>
 							</div>
 							<!-- 6's end -->
 
 							<!-- 3 of a kind -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-3x" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Three of A Kind</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-3x" class="btn btn-primary score-btn me-3 fw-bold">Three of A Kind</button>
 								<h3 class="m-0" id="p-btn-3x-value">0</h3>
 							</div>
 							<!-- 3 of a kind end -->
 
 							<!-- 4 of a kind -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-4x" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Four of A Kind</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-4x" class="btn btn-primary score-btn me-3 fw-bold">Four of A Kind</button>
 								<h3 class="mb-0" id="p-btn-4x-value">0</h3>
 							</div>
 							<!-- 4 of a kind end -->
 
 							<!-- Full House -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-fh" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Full House</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-fh" class="btn btn-primary score-btn me-3 fw-bold">Full House</button>
 								<h3 class="mb-0" id="p-btn-fh-value">0</h3>
 							</div>
 							<!-- Full House end -->
 
 							<!-- Small Straight -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-ss" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Small Straight</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-ss" class="btn btn-primary score-btn me-3 fw-bold">Small Straight</button>
 								<h3 class="mb-0" id="p-btn-ss-value">0</h3>
 							</div>
 							<!-- Small Straight end -->
 
 							<!-- Large Straight -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-ls" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Large Straight</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-ls" class="btn btn-primary score-btn me-3 fw-bold">Large Straight</button>
 								<h3 class="mb-0" id="p-btn-ls-value">0</h3>
 							</div>
 							<!-- Large Straight end -->
 
 							<!-- Any Combo -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-any" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Any Combo</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-any" class="btn btn-primary score-btn me-3 fw-bold">Any Combo</button>
 								<h3 class="mb-0" id="p-btn-any-value">0</h3>
 							</div>
 							<!-- Any Combo end -->
 
 							<!-- Yahtzee -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
-								<button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3 fs-5 fw-bold">Yahtzee</button>
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
+								<button id="p-btn-yahtzee" class="btn btn-primary score-btn me-3 fw-bold">Yahtzee</button>
 								<h3 class="mb-0" id="p-btn-yahtzee-value">0</h3>
 							</div>
 							<!-- Yahtzee end -->
@@ -174,11 +175,11 @@
 							<h2 id="total" class="text-white glow-teal m-0">0</h2>
 						</div>
 						<!-- Total section end -->
-					</div>
+					</section>
 					<!-- Player scoreboard end -->
 
 					<!-- Computer scoreboard -->
-					<div class="container d-flex flex-column mb-3 mb-lg-4">
+					<section class="container d-flex flex-column mb-3 mb-lg-4">
 						<div class="row justify-content-center align-items-center p-2">
 							<img src="img/icon_Computer-white.svg" alt="" class="icons glow-teal">
 							<div class="text-center w-25">
@@ -188,91 +189,91 @@
 
 						<div id="comp-board" class="row scoreboard score-container m-3 text-white">
 							<!-- 1's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Ones</h5>
 								<h5 class="m-0 comp-score-val" id="c-one">0</h5>
 							</div>
 							<!-- 1's end -->
 
 							<!-- 2's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Twos</h5>
 								<h5 class="m-0" id="c-two">0</h5>
 							</div>
 							<!-- 2's end -->
 
 							<!-- 3's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Threes</h5>
 								<h5 class="m-0" id="c-three">0</h5>
 							</div>
 							<!-- 3's end -->
 
 							<!-- 4's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Fours</h5>
 								<h5 class="m-0" id="c-four">0</h5>
 							</div>
 							<!-- 4's end -->
 
 							<!-- 5's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Fives</h5>
 								<h5 class="m-0" id="c-five">0</h5>
 							</div>
 							<!-- 5's end -->
 
 							<!-- 6's -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Sixes</h5>
 								<h5 class="m-0" id="c-six">0</h5>
 							</div>
 							<!-- 6's end -->
 
 							<!-- 3 of a kind -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Three of A Kind</h5>
 								<h5 class="m-0" id="c-threex">0</h5>
 							</div>
 							<!-- 3 of a kind end -->
 
 							<!-- 4 of a kind -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Four of A Kind</h5>
 								<h5 class="mb-0" id="c-fourx">0</h5>
 							</div>
 							<!-- 4 of a kind end -->
 
 							<!-- Full House -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Full House</h5>
 								<h5 class="mb-0" id="c-fh">0</h5>
 							</div>
 							<!-- Full House end -->
 
 							<!-- Small Straight -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Small Straight</h5>
 								<h5 class="mb-0" id="c-ss">0</h5>
 							</div>
 							<!-- Small Straight end -->
 
 							<!-- Large Straight -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Large Straight</h5>
 								<h5 class="mb-0" id="c-ls">0</h5>
 							</div>
 							<!-- Large Straight end -->
 
 							<!-- Any Combo -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Any Combo</h5>
 								<h5 class="mb-0" id="c-any">0</h5>
 							</div>
 							<!-- Any Combo end -->
 
 							<!-- Yahtzee -->
-							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center px-5 mb-4">
+							<div class="col-6 col-lg-4 d-flex justify-content-between align-items-center mb-4 px-xl-5 scoreboard__cell">
 								<h5 class="m-0 me-3">Yahtzee</h5>
 								<h5 class="mb-0" id="c-yahtzee">0</h5>
 							</div>
@@ -286,17 +287,17 @@
 							<h2 id="comp-total" class="text-white glow-teal m-0">0</h2>
 						</div>
 						<!-- Total section end -->
-					</div>
+					</section>
 					<!-- Computer scoreboard end -->
 
 				</div>
-			</div>
+			</article>
 			<!-- Scoreboards end -->
 
 		</div>
 		<!-- Dice and Scoreboard end -->
 
-	</div>
+	</main>
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
