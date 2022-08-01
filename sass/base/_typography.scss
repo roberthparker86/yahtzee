@@ -1,0 +1,44 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;  
+  font-size: 1rem;
+}
+
+// HEADERS
+h1, h2, h3, h4 {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: 300;
+  
+}
+h1 {
+  color: $color-red;
+  font-size: 2.5rem;
+  filter: 
+    drop-shadow(0 .25rem 0 $color-light-purple) 
+    drop-shadow(0 .35rem 0 $color-purple)
+    drop-shadow(0 .45rem 0 $color-light-purple)
+    drop-shadow(0 .55rem 0 $color-purple)
+    drop-shadow(0 .65rem 0 $color-light-purple);
+  margin-top: $sp-md;
+  margin-bottom: $sp-xl;
+  text-align: center;
+}
+@media screen and (min-width: $brk-sm) {
+  h1 {
+    font-size: 3.75rem;
+  }
+}
+h2 {
+  font-size: 2rem;
+  filter: 
+    drop-shadow(0 .2rem 0 $color-light-purple) 
+    drop-shadow(0 .28rem 0 $color-purple)
+    drop-shadow(0 .36rem 0 $color-light-purple)
+    drop-shadow(0 .44rem 0 $color-purple)
+    drop-shadow(0 .52rem 0 $color-light-purple);
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
