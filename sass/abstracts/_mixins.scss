@@ -1,0 +1,8 @@
+@mixin border-glow {
+  box-shadow: 
+    0 0 .5rem $color-red inset,
+    0 0 1rem $color-light-red inset,
+    0 0 .5rem $color-red,
+    0 0 1rem $color-light-red;
+}
+

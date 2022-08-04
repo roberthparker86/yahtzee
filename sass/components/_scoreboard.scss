@@ -1,0 +1,59 @@
+article {
+  @include border-glow;
+  border: 2px solid $color-white;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2; 
+  height: 100%;
+
+  & div.scoreboard__header {    
+    align-items: center;    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: $sp-lg;
+    
+    & img.icons {
+      filter:
+        drop-shadow(0 0 .5rem $color-teal)
+        drop-shadow(0 0 1rem $color-light-teal);
+      height: 10rem;
+      margin-right: $sp-lg;
+      width: 10rem;
+    }
+  }
+
+  & div.scoreboard__board {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & div.scoreboard__btn-container {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: $sp-md;
+      width: 100%;
+
+      & button {
+        border: 0;
+        background-color: $color-red;
+        border-radius: .5rem;
+        padding: $sp-sm $sp-md;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $brk-xl) {
+  article {
+
+    & div.scoreboard__board {
+      flex-direction: row;
+
+      & div.scoreboard__btn-container {
+        width: 33.3333%;
+      }
+    }
+  }    
+}

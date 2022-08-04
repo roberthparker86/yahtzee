@@ -1,0 +1,29 @@
+aside {
+  @include border-glow;
+  border: 2px solid $color-white;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: auto;
+  padding: $sp-md;
+  width: 100%;
+
+  & i.dice {
+    color: $color-teal;
+    font-size: 5rem;
+  }
+}
+@media screen and (min-width: $brk-xl) {
+  aside {
+    flex-direction: column;
+    height: 100%;
+    margin-right: $sp-lg;
+    padding: $sp-lg;
+    width: auto;
+
+    & i.dice {
+      font-size: 6.5rem;
+    }
+  }
+}

@@ -13,14 +13,28 @@ body {
 main {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 @media screen and (min-width: 1200px) {
   main {
     flex-direction: row;
+    max-width: 992px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  main {
+    max-width: 1200px;
+  }
+}
+@media screen and (min-width: 2592px) {
+  main {
+    max-width: 1400px;
   }
 }
 body {
+  color: #F1EEE9;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1rem;
 }
@@ -45,7 +59,7 @@ h1 {
   }
 }
 h2 {
-  font-size: 2rem;
+  font-size: 3rem;
   filter: drop-shadow(0 0.2rem 0 #7B3B84) drop-shadow(0 0.28rem 0 #582F79) drop-shadow(0 0.36rem 0 #7B3B84) drop-shadow(0 0.44rem 0 #582F79) drop-shadow(0 0.52rem 0 #7B3B84);
 }
 
@@ -57,6 +71,82 @@ h4 {
   font-size: 1.5rem;
 }
 
+aside {
+  box-shadow: 0 0 0.5rem #F5557B inset, 0 0 1rem #FF879A inset, 0 0 0.5rem #F5557B, 0 0 1rem #FF879A;
+  border: 2px solid #F1EEE9;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  height: auto;
+  padding: 1rem;
+  width: 100%;
+}
+aside i.dice {
+  color: #01E7D3;
+  font-size: 5rem;
+}
+
+@media screen and (min-width: 1200px) {
+  aside {
+    flex-direction: column;
+    height: 100%;
+    margin-right: 1.5rem;
+    padding: 1.5rem;
+    width: auto;
+  }
+  aside i.dice {
+    font-size: 6.5rem;
+  }
+}
+article {
+  box-shadow: 0 0 0.5rem #F5557B inset, 0 0 1rem #FF879A inset, 0 0 0.5rem #F5557B, 0 0 1rem #FF879A;
+  border: 2px solid #F1EEE9;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  height: 100%;
+}
+article div.scoreboard__header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1.5rem;
+}
+article div.scoreboard__header img.icons {
+  filter: drop-shadow(0 0 0.5rem #01E7D3) drop-shadow(0 0 1rem #A4EADF);
+  height: 10rem;
+  margin-right: 1.5rem;
+  width: 10rem;
+}
+article div.scoreboard__board {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+article div.scoreboard__board div.scoreboard__btn-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+article div.scoreboard__board div.scoreboard__btn-container button {
+  border: 0;
+  background-color: #F5557B;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  article div.scoreboard__board {
+    flex-direction: row;
+  }
+  article div.scoreboard__board div.scoreboard__btn-container {
+    width: 33.3333%;
+  }
+}
 .text-red {
   color: #F5557B;
 }

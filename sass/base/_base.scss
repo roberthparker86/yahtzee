@@ -13,10 +13,23 @@ body {
 main {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  padding: 0 $sp-md;
 }
 
 @media screen and (min-width: $brk-xl) {
   main {
     flex-direction: row;
+    max-width: $brk-lg;
+  }  
+}
+@media screen and (min-width: $brk-xxl) {
+  main {
+    max-width: $brk-xl;
+  }  
+}
+@media screen and (min-width: $brk-4k) {
+  main {
+    max-width: $brk-xxl;
   }  
 }
