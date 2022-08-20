@@ -6,18 +6,30 @@ aside {
   flex-direction: row;
   flex-shrink: 1;
   height: auto;
-  padding: $sp-md;
+  justify-content: space-evenly;
+  margin-bottom: $sp-md;
+  padding: $sp-md $sp-sm;
   width: 100%;
 
   & i.dice {
     color: $color-teal;
-    font-size: 5rem;
+    font-size: 3.5rem;
+    transition: all .25s ease-in-out;
+
+    &:hover {
+      color: $color-white;
+      cursor: pointer;
+      filter: 
+        drop-shadow(0 0 .5rem $color-teal)
+        drop-shadow(0 0 1rem $color-light-teal);
+    }
   }
 }
 @media screen and (min-width: $brk-xl) {
   aside {
     flex-direction: column;
     height: 100%;
+    margin-bottom: 0;
     margin-right: $sp-lg;
     padding: $sp-lg;
     width: auto;

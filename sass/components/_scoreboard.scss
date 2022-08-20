@@ -18,28 +18,48 @@ article {
       filter:
         drop-shadow(0 0 .5rem $color-teal)
         drop-shadow(0 0 1rem $color-light-teal);
-      height: 10rem;
+      height: 5.5rem;
       margin-right: $sp-lg;
-      width: 10rem;
+      width: 5.5rem;
     }
   }
 
   & div.scoreboard__board {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: $sp-lg 0;
+    padding: 0 $sp-lg;
     width: 100%;
 
     & div.scoreboard__btn-container {
+      align-items: center;
       display: flex;
       flex-direction: row;
-      margin-bottom: $sp-md;
-      width: 100%;
+      justify-content: center;
+      margin-bottom: $sp-lg;
+      width: 50%;
 
       & button {
         border: 0;
         background-color: $color-red;
         border-radius: .5rem;
+        color: $color-dark-blue;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: $sp-md;
+        min-width: 50%;
         padding: $sp-sm $sp-md;
+        text-transform: capitalize;
+        transition: all .25s ease-in-out;
+
+        &:hover {
+          background-color: $color-white;
+          color: $color-red;
+          filter: 
+            drop-shadow(0 0 .5rem $color-red)
+            drop-shadow(0 0 1rem $color-light-red);        
+        }
       }
     }
   }
@@ -48,11 +68,24 @@ article {
 @media screen and (min-width: $brk-xl) {
   article {
 
+    & div.scoreboard__header {
+
+      & img.icons {
+        height: 8rem;
+        margin-right: $sp-xl;
+        width: 8rem;
+      }
+    }
+
     & div.scoreboard__board {
       flex-direction: row;
 
       & div.scoreboard__btn-container {
         width: 33.3333%;
+
+        & button {
+          font-size: 1.5rem;
+        }
       }
     }
   }    

@@ -23,13 +23,8 @@ h1 {
   margin-bottom: $sp-xl;
   text-align: center;
 }
-@media screen and (min-width: $brk-sm) {
-  h1 {
-    font-size: 3.75rem;
-  }
-}
 h2 {
-  font-size: 3rem;
+  font-size: 2.25rem;
   filter: 
     drop-shadow(0 .2rem 0 $color-light-purple) 
     drop-shadow(0 .28rem 0 $color-purple)
@@ -42,4 +37,13 @@ h3 {
 }
 h4 {
   font-size: 1.5rem;
+}
+
+@media screen and (min-width: $brk-xl) {
+  h1 {
+    font-size: 3.75rem;
+  }
+  h2 {
+    font-size: 3.25rem;
+  }
 }
