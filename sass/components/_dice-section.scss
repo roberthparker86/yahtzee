@@ -20,8 +20,8 @@ aside {
       color: $color-white;
       cursor: pointer;
       filter: 
-        drop-shadow(0 0 .5rem $color-teal)
-        drop-shadow(0 0 1rem $color-light-teal);
+        drop-shadow(0 0 .25rem $color-teal)
+        drop-shadow(0 0 .75rem $color-light-teal);
     }
   }
 }

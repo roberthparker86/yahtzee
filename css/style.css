@@ -95,7 +95,7 @@ aside i.dice {
 aside i.dice:hover {
   color: #F1EEE9;
   cursor: pointer;
-  filter: drop-shadow(0 0 0.5rem #01E7D3) drop-shadow(0 0 1rem #A4EADF);
+  filter: drop-shadow(0 0 0.25rem #01E7D3) drop-shadow(0 0 0.75rem #A4EADF);
 }
 
 @media screen and (min-width: 1200px) {
@@ -119,6 +119,7 @@ article {
   flex-direction: column;
   flex-grow: 2;
   height: 100%;
+  max-height: 70vh;
 }
 article div.scoreboard__header {
   align-items: center;
@@ -126,19 +127,21 @@ article div.scoreboard__header {
   flex-direction: row;
   justify-content: center;
   padding: 1.5rem;
+  padding-bottom: 0;
 }
 article div.scoreboard__header img.icons {
-  filter: drop-shadow(0 0 0.5rem #01E7D3) drop-shadow(0 0 1rem #A4EADF);
+  filter: drop-shadow(0 0 0.25rem #01E7D3) drop-shadow(0 0 0.75rem #A4EADF);
   height: 5.5rem;
   margin-right: 1.5rem;
   width: 5.5rem;
 }
 article div.scoreboard__board {
+  align-items: center;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 1.5rem 0;
-  padding: 0 1.5rem;
+  flex-direction: column;
+  overflow: auto;
+  padding: 1.5rem;
+  padding-bottom: 0;
   width: 100%;
 }
 article div.scoreboard__board div.scoreboard__btn-container {
@@ -146,8 +149,8 @@ article div.scoreboard__board div.scoreboard__btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 1.5rem;
-  width: 50%;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 article div.scoreboard__board div.scoreboard__btn-container button {
   border: 0;
@@ -157,31 +160,66 @@ article div.scoreboard__board div.scoreboard__btn-container button {
   cursor: pointer;
   font-size: 1rem;
   margin-right: 1rem;
-  min-width: 50%;
   padding: 0.5rem 1rem;
   text-transform: capitalize;
   transition: all 0.25s ease-in-out;
+  width: 75%;
 }
 article div.scoreboard__board div.scoreboard__btn-container button:hover {
   background-color: #F1EEE9;
   color: #F5557B;
-  filter: drop-shadow(0 0 0.5rem #F5557B) drop-shadow(0 0 1rem #FF879A);
+  filter: drop-shadow(0 0 0.25rem #F5557B) drop-shadow(0 0 0.5rem #FF879A);
+}
+article div.scoreboard__board div.scoreboard__btn-container h3 {
+  transition: all 0.25s ease-in-out;
+}
+article .scoreboard__total {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 3rem;
+}
+article .scoreboard__total h2 {
+  color: #F5557B;
+  line-height: 1;
+}
+article .scoreboard__total h2:first-of-type {
+  margin-right: 1.5rem;
 }
 
+@media screen and (min-width: 768px) {
+  article div.scoreboard__board {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  article div.scoreboard__board div.scoreboard__btn-container {
+    margin-bottom: 1rem;
+    width: 50%;
+  }
+}
 @media screen and (min-width: 1200px) {
+  article div.scoreboard__header {
+    padding-bottom: 1rem;
+  }
   article div.scoreboard__header img.icons {
     height: 8rem;
     margin-right: 3rem;
     width: 8rem;
   }
-  article div.scoreboard__board {
-    flex-direction: row;
-  }
   article div.scoreboard__board div.scoreboard__btn-container {
+    justify-content: end;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
     width: 33.3333%;
   }
   article div.scoreboard__board div.scoreboard__btn-container button {
-    font-size: 1.5rem;
+    flex-grow: 1;
+    font-size: 1.25rem;
+    min-width: 50%;
+    width: auto;
+  }
+  article .scoreboard__total {
+    padding: 0 0 3rem;
   }
 }
 .text-red {
