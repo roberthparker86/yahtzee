@@ -38,7 +38,5 @@ class Dice {
 
       targetSelector.append(newITag);
     });
-
-    console.log(targetSelector);
   }
 };

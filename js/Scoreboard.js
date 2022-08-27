@@ -34,6 +34,18 @@ class Scoreboard {
     console.log(this[category]);
   }
 
+  generateScoreboardHeader() {
+    const imgSrceFile = this.name === 'player' ? 'icon_Player-white' : 'icon_Computer-white';
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('scoreboard__header');
+
+    const innerHTML = `<img src="img/${imgSrceFile}.svg" alt="Player icon" class="icons">
+      <h2 class="text-red">${this.name}</h2>`;
+
+    newDiv.innerHTML = innerHTML;
+    return newDiv;
+  }
+
   generateBtn(category) {
     const newBtnElem = document.createElement('div');
     newBtnElem.classList.add('scoreboard__btn-container');
@@ -46,6 +58,8 @@ class Scoreboard {
 
   generateScoreboard() {
     const boardContainerSelector = document.querySelector(`#${this.name}`);
+
+    boardContainerSelector.append(this.generateScoreboardHeader());
 
     let boardBtnsContainerElem = document.createElement('div');
     boardBtnsContainerElem.classList.add('scoreboard__board');
