@@ -7,6 +7,17 @@ article {
   flex-grow: 2; 
   height: 100%;
   max-height: 70vh;
+  opacity: 1;
+  overflow: visible;
+  transition: 
+    opacity .35s ease-in-out, 
+    max-height .35s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
 
   & div.scoreboard__header {    
     align-items: center;    

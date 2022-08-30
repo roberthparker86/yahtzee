@@ -120,6 +120,14 @@ article {
   flex-grow: 2;
   height: 100%;
   max-height: 70vh;
+  opacity: 1;
+  overflow: visible;
+  transition: opacity 0.35s ease-in-out, max-height 0.35s ease-in-out;
+}
+article.hidden {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
 }
 article div.scoreboard__header {
   align-items: center;

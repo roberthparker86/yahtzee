@@ -28,6 +28,12 @@ class Scoreboard {
     this.any = { id: `${name}-btn-any`, btnText: 'Any Category', value: 0 };
     this.yahtzee = { id: `${name}-btn-yahtzee`, btnText: 'Yahtzee', value: 0 };
     this.total = { id: `${name}-total`, btnText: 'Total', value: 0 };
+    this.parentContainer = document.getElementById(this.name);
+  }
+
+  static switchScoreboards (hide, reveal) {
+    hide.setHidden(true);
+    setTimeout(() => reveal.setHidden(false), 400);
   }
 
   updateScore(category) {
@@ -49,7 +55,7 @@ class Scoreboard {
   generateBtn(category) {
     const newBtnElem = document.createElement('div');
     newBtnElem.classList.add('scoreboard__btn-container');
-    const btnTemplate = `<button id="${this[category].id}" class="score-btn">${this[category].btnText}</button>
+    const btnTemplate = `<button id="${this[category].id}" data-player="${this.name}" class="score-btn">${this[category].btnText}</button>
       <h3 id="${this[category].id}-value">${this[category].value}</h3>`;
 
     newBtnElem.innerHTML = btnTemplate;
@@ -57,22 +63,15 @@ class Scoreboard {
   }
 
   generateScoreboard() {
-    const boardContainerSelector = document.querySelector(`#${this.name}`);
-
-    boardContainerSelector.append(this.generateScoreboardHeader());
+    this.parentContainer.append(this.generateScoreboardHeader());
 
     let boardBtnsContainerElem = document.createElement('div');
     boardBtnsContainerElem.classList.add('scoreboard__board');
-    boardContainerSelector.append(boardBtnsContainerElem);
+    this.parentContainer.append(boardBtnsContainerElem);
 
     for (const key in this) {
-      if (key.toString() !== 'name' && key.toString() !== 'total') {
+      if (key.toString() !== 'name' && key.toString() !== 'total' && key.toString() !== 'parentContainer') {
         boardBtnsContainerElem.append(this.generateBtn(key.toString()));
-        const newElementSelector = document.querySelector(`#${this[key].id}`);
-
-        newElementSelector.addEventListener('click', function () {
-          console.log(this);
-        });
       }
     }
 
@@ -80,6 +79,21 @@ class Scoreboard {
     totalSection.classList.add('scoreboard__total');
     totalSection.setAttribute('id', this.total.id);
     totalSection.innerHTML = `<h2>Total</h2><h2>${this.total.value}</h2>`;
-    boardContainerSelector.append(totalSection);
+    this.parentContainer.append(totalSection);
+    if (this.name === 'computer') {
+      this.parentContainer.classList.add('hidden', 'd-none');
+    };
+  }
+
+  setHidden(bool) {
+    if (bool) {
+      const classes = this.parentContainer.classList;
+      classes.add('hidden');
+      setTimeout(() => classes.add('d-none'), 350);
+    } else {
+      const classes = this.parentContainer.classList;
+      classes.remove('d-none');
+      setTimeout(() => classes.remove('hidden'), 50);
+    }
   }
 }
