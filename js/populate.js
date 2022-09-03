@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const playerOne = new Scoreboard('player'),
     computer = new Scoreboard('computer'),
-    diceController = new Dice();
+    diceCtrl = new Dice();
 
-  diceController.generateDice();
   playerOne.generateScoreboard();
   computer.generateScoreboard();
 
@@ -17,4 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : Scoreboard.switchScoreboards(computer, playerOne);
     });
   });
+
+  diceCtrl.rollHand();
+  diceCtrl.getScore();
 });

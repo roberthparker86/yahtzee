@@ -31,6 +31,11 @@ class Scoreboard {
     this.parentContainer = document.getElementById(this.name);
   }
 
+  /** 
+   * @param {Class} hide instance of Scoreboard class
+   * @param {Class} reveal instance of Scoreboard class
+   * @returns {void}
+   */
   static switchScoreboards (hide, reveal) {
     hide.setHidden(true);
     setTimeout(() => reveal.setHidden(false), 400);
