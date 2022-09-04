@@ -25,7 +25,7 @@ article {
     flex-direction: row;
     justify-content: center;
     padding: $sp-lg;
-    padding-bottom: 0;
+    padding-bottom: $sp-md;
     
     & img.icons {
       filter:
@@ -118,8 +118,6 @@ article {
   article {
 
     & div.scoreboard__header {
-
-      padding-bottom: $sp-md;
 
       & img.icons {
         height: 8rem;

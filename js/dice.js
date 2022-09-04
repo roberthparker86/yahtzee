@@ -1,6 +1,6 @@
 class Dice {
   constructor() {
-    this.valuesArray = [1, 2, 3, 4, 5];
+    this.valuesArray = [1, 1, 1, 1, 1];
     this.one = 'fa-dice-one';
     this.two = "fa-dice-two";
     this.three = "fa-dice-three";
@@ -65,7 +65,8 @@ class Dice {
     const diceRollInterval = setInterval(rollAction, 100);
   }
 
-  getScore () {
-    console.log(this.valuesArray.reduce((a,b) => a+b));
+  getScore (category) {
+    console.log(category);
+    return this.valuesArray.reduce((a, b) => a+b);
   } 
 };

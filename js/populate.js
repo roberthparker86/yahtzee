@@ -1,22 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const playerOne = new Scoreboard('player'),
-    computer = new Scoreboard('computer'),
-    diceCtrl = new Dice();
+  const diceCtrl = new Dice();
+  const playerOne = new Scoreboard('player', diceCtrl),
+    computer = new Scoreboard('computer', diceCtrl);
 
   playerOne.generateScoreboard();
   computer.generateScoreboard();
 
-  const allScoreBtnsSelector = document.querySelectorAll('button.score-btn');
-  allScoreBtnsSelector.forEach(elem => {
-    elem.addEventListener('click', function(){
-      const player = this.getAttribute('data-player');
+  const rollBtnSelector = document.querySelector('aside button');
+  rollBtnSelector.addEventListener('click', () => diceCtrl.rollHand());
 
-      player.toString() === 'player'
-        ? Scoreboard.switchScoreboards(playerOne, computer)
-        : Scoreboard.switchScoreboards(computer, playerOne);
-    });
-  });
-
-  diceCtrl.rollHand();
   diceCtrl.getScore();
 });

@@ -1,6 +1,11 @@
 class Scoreboard {
-  constructor(name) {
+  /**
+   * @param {String} name = id name for determining player/computer object 
+   * @param {Object} diceCtrl = Dice control object to gain access to its methods
+   */
+  constructor(name, diceCtrl = null) {
     this.name = name;
+    this.diceCtrl = diceCtrl !== null ? diceCtrl : null;
     this.one = { id: `${name}-btn-1`, btnText: '1s', value: 0 };
     this.two = { id: `${name}-btn-2`, btnText: '2s', value: 0 };
     this.three = { id: `${name}-btn-3`, btnText: '3s', value: 0 };
@@ -41,7 +46,14 @@ class Scoreboard {
     setTimeout(() => reveal.setHidden(false), 400);
   }
 
-  updateScore(category) {
+  /**
+   * @param {String} category = selector for score category property
+   * @param {Number} score = Value to upate specified category to in the DOM 
+   */
+  updateScore(category, score) {
+    this[category].value = score;
+    const updateElem = document.querySelector(`#${this[category].id}-value`);
+    updateElem.innerHTML = score;
     console.log(this[category]);
   }
 
@@ -57,13 +69,23 @@ class Scoreboard {
     return newDiv;
   }
 
+  /**
+   * 
+   * @param {String} category = Selector for category property 
+   * @returns {HTMLElement} = adds element to DOM and returns the selector variable
+   */
   generateBtn(category) {
     const newBtnElem = document.createElement('div');
     newBtnElem.classList.add('scoreboard__btn-container');
-    const btnTemplate = `<button id="${this[category].id}" data-player="${this.name}" class="score-btn">${this[category].btnText}</button>
+    const btnTemplate = `<button id="${this[category].id}" data-score-key="${category}" data-player="${this.name}" class="score-btn">${this[category].btnText}</button>
       <h3 id="${this[category].id}-value">${this[category].value}</h3>`;
 
     newBtnElem.innerHTML = btnTemplate;
+
+    newBtnElem.addEventListener('click', () => {
+      const newValue = this.diceCtrl.getScore(category);
+      this.updateScore(category, newValue);
+    });
     return newBtnElem;
   }
 
@@ -75,7 +97,10 @@ class Scoreboard {
     this.parentContainer.append(boardBtnsContainerElem);
 
     for (const key in this) {
-      if (key.toString() !== 'name' && key.toString() !== 'total' && key.toString() !== 'parentContainer') {
+      if (
+        key.toString() !== 'name' && key.toString() !== 'total' &&
+        key.toString() !== 'parentContainer' && key.toString() !== 'diceCtrl'
+      ) {
         boardBtnsContainerElem.append(this.generateBtn(key.toString()));
       }
     }
@@ -90,6 +115,10 @@ class Scoreboard {
     };
   }
 
+  /**
+   * 
+   * @param {Boolean} bool = used to determine whether hiding or revealing scoreboard
+   */
   setHidden(bool) {
     if (bool) {
       const classes = this.parentContainer.classList;
