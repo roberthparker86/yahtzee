@@ -53,6 +53,17 @@ aside {
     }
   }
 }
+
+@media screen and (min-width: $brk-md) {
+  aside {
+    & .dice-container {
+      & i.dice {
+        font-size: 5.75rem;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: $brk-xl) {
   aside {
     height: 100%;

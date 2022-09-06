@@ -100,6 +100,9 @@ article {
 }
 
 @media screen and (min-width: $brk-md) {
+  main {
+    padding: 0 1.5rem;
+  }
   article {
 
     & div.scoreboard__board {
@@ -115,6 +118,10 @@ article {
 }
 
 @media screen and (min-width: $brk-xl) {
+  main {
+    padding: 0 1rem;
+  }
+
   article {
 
     & div.scoreboard__header {

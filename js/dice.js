@@ -65,8 +65,59 @@ class Dice {
     const diceRollInterval = setInterval(rollAction, 100);
   }
 
+  filterNumbers (targetNum) { 
+    return this.valuesArray.filter(num => (num === targetNum && num));
+  }
+
+  getSortedSetArray (arr) {
+    let tempSet = new Set(arr.sort());
+    let sortedSet = [];
+    for (let item of tempSet) sortedSet.push(item);
+    return sortedSet;
+  }
+
+  /**
+   * @param {Array} arr = array to count in
+   * @param {Number} target = number to count 
+   * @returns {Number} = number of times number appears
+   */
+  getTargetCount (arr, target) {
+    let counter = 0;
+    arr.forEach(num => num === target && counter++);
+    return counter;
+  }
+  
+  // Checks methods
+  checkYahtzee (arr) {
+    return this.getSortedSetArray(arr).length === 1;
+  }
+
+  checkThreeKind(arr) {
+    const setArray = getSortedSetArray(arr);
+    
+    if (setArray.length < 4) {
+      for (let i=0; i < setArray.length; i++) {
+        return getTargetCount(arr, setArray[i]) >= 3 && true;
+      }
+    }  
+    return false;
+  }
+
+  checkFourKind (arr) {
+    return getTargetCount(arr, arr[0]) > 3 || getTargetCount(arr, arr[1]) > 3;
+  }
+
+  checkFullHouse (arr) {
+    let setArray = getSortedSetArray(arr); 
+    
+    if (setArray.length == 2) {
+      return getTargetCount(arr, arr[0]) === 3 || getTargetCount(arr, arr[0]) === 2;
+    }
+    return false;
+  }
+
   getScore (category) {
     console.log(category);
     return this.valuesArray.reduce((a, b) => a+b);
-  } 
+  }
 };

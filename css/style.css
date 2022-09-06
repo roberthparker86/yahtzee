@@ -121,6 +121,11 @@ aside .dice-container i.dice:hover {
   filter: drop-shadow(0 0 0.25rem #01E7D3) drop-shadow(0 0 0.75rem #A4EADF);
 }
 
+@media screen and (min-width: 768px) {
+  aside .dice-container i.dice {
+    font-size: 5rem;
+  }
+}
 @media screen and (min-width: 1200px) {
   aside {
     height: 100%;
@@ -224,6 +229,9 @@ article .scoreboard__total h2:first-of-type {
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    padding: 0 1.5rem;
+  }
   article div.scoreboard__board {
     flex-direction: row;
     flex-wrap: wrap;
@@ -234,6 +242,9 @@ article .scoreboard__total h2:first-of-type {
   }
 }
 @media screen and (min-width: 1200px) {
+  main {
+    padding: 0 1rem;
+  }
   article div.scoreboard__header img.icons {
     height: 8rem;
     margin-right: 3rem;
