@@ -116,6 +116,32 @@ class Dice {
     return false;
   }
 
+
+  checkSmallStraight (arr) {
+    let arrayToCheck = getSortedSetArray(arr);
+    
+    if (arrayToCheck.length >= 4) {
+      let count = 0;
+      for (let i=0; i < arrayToCheck.length-1; i++) {
+        count = (arrayToCheck[i] + 1 === arrayToCheck[i+1]) ? count+1 : count-1;
+      }
+      return count >= 3;
+    }
+    return false;
+  }
+
+  checkLargeStraight (arr) {
+    let arrayToCheck = getSortedSetArray(arr);
+    if (arrayToCheck.length === arr.length) {
+      let count = 0;
+      for (let i=0; i < arrayToCheck.length - 1; i++) {
+        count = (arrayToCheck[i] + 1 === arrayToCheck[i+1]) ? count+1 : count-1;
+      }
+      return count >= 4;
+    }
+    return false;
+  }
+
   getScore (category) {
     console.log(category);
     return this.valuesArray.reduce((a, b) => a+b);
