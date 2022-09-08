@@ -43,7 +43,8 @@ aside {
       font-size: 3.5rem;
       transition: all .25s ease-in-out;
   
-      &:hover {
+      &:hover,
+      &.hold {
         color: $color-white;
         cursor: pointer;
         filter: 

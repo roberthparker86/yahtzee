@@ -9,5 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const rollBtnSelector = document.querySelector('aside button');
   rollBtnSelector.addEventListener('click', () => diceCtrl.rollHand());
 
-  diceCtrl.getScore();
+  const diceSelector = document.querySelectorAll('i.dice');
+  diceSelector.forEach(die => {
+    die.addEventListener('click', function() {
+      this.classList.contains('hold')
+        ? this.classList.remove('hold')
+        : this.classList.add('hold');
+    });
+  });
 });

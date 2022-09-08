@@ -12,7 +12,7 @@ class Scoreboard {
     this.four = { id: `${name}-btn-4`, btnText: '4s', value: 0 };
     this.five = { id: `${name}-btn-5`, btnText: '5s', value: 0 };
     this.six = { id: `${name}-btn-6`, btnText: '6s', value: 0 };
-    this.twoPair = { id: `${name}-btn-2-pair`, btnText: '2 Pair', value: 0 };
+    // this.twoPair = { id: `${name}-btn-2-pair`, btnText: '2 Pair', value: 0 };
     this.threeOfKind = { id: `${name}-btn-3x`, btnText: '3x', value: 0 };
     this.fourOfKind = { id: `${name}-btn-4x`, btnText: '4x', value: 0 };
     this.smallStraight = {
@@ -54,7 +54,6 @@ class Scoreboard {
     this[category].value = score;
     const updateElem = document.querySelector(`#${this[category].id}-value`);
     updateElem.innerHTML = score;
-    console.log(this[category]);
   }
 
   generateScoreboardHeader() {

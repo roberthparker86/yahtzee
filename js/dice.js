@@ -40,8 +40,11 @@ class Dice {
       dieElemSelector = document.querySelectorAll('i')[valueIndex],
       newClass = Dice.getDieClassFromInt(diceObj, randNum);
 
-    diceObj.valuesArray[valueIndex] = randNum;
-    dieElemSelector.classList.replace(dieElemSelector.classList[2].toString(), newClass);
+    if (!dieElemSelector.classList.contains('hold')) {
+      diceObj.valuesArray[valueIndex] = randNum;
+      dieElemSelector.classList.replace(dieElemSelector.classList[2].toString(), newClass);
+    }
+      
   }
 
   // Roll new hand
@@ -93,36 +96,37 @@ class Dice {
   }
 
   checkThreeKind(arr) {
-    const setArray = getSortedSetArray(arr);
+    const setArray = this.getSortedSetArray(arr);
     
     if (setArray.length < 4) {
       for (let i=0; i < setArray.length; i++) {
-        return getTargetCount(arr, setArray[i]) >= 3 && true;
+        return this.getTargetCount(arr, setArray[i]) >= 3 && true;
       }
     }  
     return false;
   }
 
   checkFourKind (arr) {
-    return getTargetCount(arr, arr[0]) > 3 || getTargetCount(arr, arr[1]) > 3;
+    return this.getTargetCount(arr, arr[0]) > 3 || this.getTargetCount(arr, arr[1]) > 3;
   }
 
   checkFullHouse (arr) {
-    let setArray = getSortedSetArray(arr); 
+    let setArray = this.getSortedSetArray(arr); 
     
     if (setArray.length == 2) {
-      return getTargetCount(arr, arr[0]) === 3 || getTargetCount(arr, arr[0]) === 2;
+      return this.getTargetCount(arr, arr[0]) === 3 || this.getTargetCount(arr, arr[0]) === 2;
     }
     return false;
   }
 
-
+  // Not working?
   checkSmallStraight (arr) {
-    let arrayToCheck = getSortedSetArray(arr);
+    let arrayToCheck = this.getSortedSetArray(arr);
     
     if (arrayToCheck.length >= 4) {
       let count = 0;
       for (let i=0; i < arrayToCheck.length-1; i++) {
+        if (count === 3) break;
         count = (arrayToCheck[i] + 1 === arrayToCheck[i+1]) ? count+1 : count-1;
       }
       return count >= 3;
@@ -131,7 +135,7 @@ class Dice {
   }
 
   checkLargeStraight (arr) {
-    let arrayToCheck = getSortedSetArray(arr);
+    let arrayToCheck = this.getSortedSetArray(arr);
     if (arrayToCheck.length === arr.length) {
       let count = 0;
       for (let i=0; i < arrayToCheck.length - 1; i++) {
@@ -143,7 +147,39 @@ class Dice {
   }
 
   getScore (category) {
-    console.log(category);
-    return this.valuesArray.reduce((a, b) => a+b);
+    console.log({ valuesArray: this.valuesArray, sorted: this.getSortedSetArray(this.valuesArray)});
+
+    switch (category) {
+      case 'one':
+        return this.filterNumbers(1).reduce((total, nextNum) => total + nextNum, 0);
+      case 'two':
+        return this.filterNumbers(2).reduce((total, nextNum) => total + nextNum, 0);
+      case 'three':
+        return this.filterNumbers(3).reduce((total, nextNum) => total + nextNum, 0);
+      case 'four':
+        return this.filterNumbers(4).reduce((total, nextNum) => total + nextNum, 0);
+      case 'five':
+        return this.filterNumbers(5).reduce((total, nextNum) => total + nextNum, 0);
+      case 'six':
+        return this.filterNumbers(6).reduce((total, nextNum) => total + nextNum, 0);
+      case 'threeOfKind':
+        return this.checkThreeKind(this.valuesArray) 
+          ? this.valuesArray.reduce((total, nextNum) => total+nextNum, 0) 
+          : 0;
+      case 'fourOfKind':
+        return this.checkFourKind(this.valuesArray)
+          ? this.valuesArray.reduce((total, nextNum) => total+nextNum, 0) 
+          : 0;
+      case 'fullHouse':
+        return this.checkFullHouse(this.valuesArray) ? 25 : 0;
+      case 'smallStraight':
+        return this.checkSmallStraight(this.valuesArray) ? 30 : 0;
+      case 'largeStraight':
+        return this.checkLargeStraight(this.valuesArray) ? 40 : 0;
+      case 'yahtzee':
+        return this.checkYahtzee(this.valuesArray) ? 50 : 0;
+      default:
+        return this.valuesArray.reduce((total, nextNum) => total+nextNum, 0);
+    }
   }
 };
