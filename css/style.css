@@ -266,6 +266,41 @@ article .scoreboard__total h2:first-of-type {
     padding: 0 0 3rem;
   }
 }
+section.modal__backdrop {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+section.modal__backdrop.open {
+  opacity: 0.55;
+}
+
+.modal__window {
+  box-shadow: 0 0 0.5rem #F5557B inset, 0 0 1rem #FF879A inset, 0 0 0.5rem #F5557B, 0 0 1rem #FF879A;
+  background-color: #09143A;
+  border: 2px solid #F1EEE9;
+  border-radius: 0.5rem;
+  opacity: 0;
+  padding: 2rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 50%;
+  z-index: 5;
+  transition: opacity 0.35s ease-in-out 0.25s;
+}
+.modal__window.open {
+  opacity: 1;
+}
+.modal__window .modal__message {
+  font-size: 1.5rem;
+}
+
 .text-red {
   color: #F5557B;
 }

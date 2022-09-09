@@ -1,6 +1,7 @@
 class Dice {
   constructor() {
     this.valuesArray = [1, 1, 1, 1, 1];
+    this.rollCount = 0;
     this.one = 'fa-dice-one';
     this.two = "fa-dice-two";
     this.three = "fa-dice-three";
