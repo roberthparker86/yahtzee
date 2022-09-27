@@ -286,7 +286,7 @@ section.modal__backdrop.open {
   border: 2px solid #F1EEE9;
   border-radius: 0.5rem;
   opacity: 0;
-  padding: 2rem;
+  padding: 3rem 4rem;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 35%;
@@ -296,6 +296,16 @@ section.modal__backdrop.open {
 }
 .modal__window.open {
   opacity: 1;
+}
+.modal__window .modal__close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #F5557B;
+}
+.modal__window .modal__close-btn:hover {
+  box-shadow: 0 0 0.5rem #F5557B inset, 0 0 1rem #FF879A inset, 0 0 0.5rem #F5557B, 0 0 1rem #FF879A;
+  color: #F1EEE9;
 }
 .modal__window .modal__message {
   font-size: 1.5rem;

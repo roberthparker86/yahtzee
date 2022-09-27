@@ -19,7 +19,7 @@ section.modal__backdrop {
 	border: 2px solid $color-white;
 	border-radius: .5rem;
 	opacity: 0;
-	padding: 2rem;
+	padding: 3rem 4rem;
 	position: absolute;
 	transform: translate(-50%, -50%);
 	top: 35%;
@@ -29,6 +29,18 @@ section.modal__backdrop {
 
 	&.open {
 		opacity: 1;
+	}
+
+	& .modal__close-btn {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		color: $color-red;
+
+		&:hover {
+			@include border-glow;
+			color: $color-white;
+		}
 	}
 
 	& .modal__message {
