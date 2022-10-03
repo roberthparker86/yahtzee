@@ -304,8 +304,8 @@ section.modal__backdrop.open {
   color: #F5557B;
 }
 .modal__window .modal__close-btn:hover {
-  box-shadow: 0 0 0.5rem #F5557B inset, 0 0 1rem #FF879A inset, 0 0 0.5rem #F5557B, 0 0 1rem #FF879A;
   color: #F1EEE9;
+  filter: drop-shadow(0 0 0.25rem #F5557B) drop-shadow(0 0 0.5rem #FF879A);
 }
 .modal__window .modal__message {
   font-size: 1.5rem;

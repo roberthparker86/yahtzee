@@ -3,22 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const playerOne = new Scoreboard('player', diceCtrl),
     computer = new Scoreboard('computer', diceCtrl);
 
-  const openModal = (content) => {
-    const modalBackdrop = document.querySelector('.modal__backdrop'),
-      modalWindow = document.querySelector('.modal__window'),
-      modalMessage = document.querySelector('.modal__message');
+  const messageModal = new ModalController(document.querySelector('.modal__window'));
 
-    modalBackdrop.classList.remove('d-none');
-    modalWindow.classList.remove('d-none');
-    modalMessage.innerHTML = content;
-
-    setTimeout(() => {
-      modalBackdrop.classList.add('open');
-      modalWindow.classList.add('open');
-    }, 20);
-  }
-
-  setTimeout(() => openModal('WOOTSAUCE!'), 2000);
+  setTimeout(() => messageModal.open('WOOTSAUCE!'), 2000);
 
   playerOne.generateScoreboard();
   computer.generateScoreboard();
