@@ -69,11 +69,10 @@ class Scoreboard {
   }
 
   /**
-   * 
    * @param {String} category = Selector for category property 
    * @returns {HTMLElement} = adds element to DOM and returns the selector variable
    */
-  generateBtn(category) {
+  generateBtn(category, modalControl) {
     const newBtnElem = document.createElement('div');
     newBtnElem.classList.add('scoreboard__btn-container');
     const btnTemplate = `<button id="${this[category].id}" data-score-key="${category}" data-player="${this.name}" class="score-btn">${this[category].btnText}</button>
@@ -81,14 +80,16 @@ class Scoreboard {
 
     newBtnElem.innerHTML = btnTemplate;
 
+    // Score Btn click events
     newBtnElem.addEventListener('click', () => {
       const newValue = this.diceCtrl.getScore(category);
       this.updateScore(category, newValue);
+      modalControl.open('Computer turn.');
     });
     return newBtnElem;
   }
 
-  generateScoreboard() {
+  generateScoreboard(modalControl) {
     this.parentContainer.append(this.generateScoreboardHeader());
 
     let boardBtnsContainerElem = document.createElement('div');
@@ -100,7 +101,7 @@ class Scoreboard {
         key.toString() !== 'name' && key.toString() !== 'total' &&
         key.toString() !== 'parentContainer' && key.toString() !== 'diceCtrl'
       ) {
-        boardBtnsContainerElem.append(this.generateBtn(key.toString()));
+        boardBtnsContainerElem.append(this.generateBtn(key.toString(), modalControl));
       }
     }
 

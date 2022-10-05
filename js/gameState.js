@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const diceCtrl = new Dice();
   const playerOne = new Scoreboard('player', diceCtrl),
+    messageModal = new ModalController(document.querySelector('.modal__window')),
     computer = new Scoreboard('computer', diceCtrl);
 
-  const messageModal = new ModalController(document.querySelector('.modal__window'));
-
-  setTimeout(() => messageModal.open('WOOTSAUCE!'), 2000);
-
-  playerOne.generateScoreboard();
-  computer.generateScoreboard();
+  playerOne.generateScoreboard(messageModal);
+  computer.generateScoreboard(messageModal);
 
   const rollBtnSelector = document.querySelector('aside button');
   rollBtnSelector.addEventListener('click', () => diceCtrl.rollHand());
