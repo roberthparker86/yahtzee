@@ -1,21 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const diceCtrl = new Dice();
-  const playerOne = new Scoreboard('player', diceCtrl),
-    messageModal = new ModalController(document.querySelector('.modal__window')),
-    computer = new Scoreboard('computer', diceCtrl);
+class GameState {
+  constructor() {
+    this.players = [];
+    this.playerTurn = 0;
+    this.round = 0;
+    this.currentPlayer = null;
+  }
 
-  playerOne.generateScoreboard(messageModal);
-  computer.generateScoreboard(messageModal);
+  addPlayer (Scoreboard) {
+    this.players.push(Scoreboard);
+    if (this.round === 0 && this.players.length === 1) {
+      this.currentPlayer = this.players[0];
+    }
+  }
 
-  const rollBtnSelector = document.querySelector('aside button');
-  rollBtnSelector.addEventListener('click', () => diceCtrl.rollHand());
-
-  const diceSelector = document.querySelectorAll('i.dice');
-  diceSelector.forEach(die => {
-    die.addEventListener('click', function() {
-      this.classList.contains('hold')
-        ? this.classList.remove('hold')
-        : this.classList.add('hold');
-    });
-  });
-});
+  changeTurn () {
+    if (this.playerTurn === 1) {
+      this.round++;
+      this.playerTurn = 0;
+    } else {
+      this.playerTurn = 1;
+    }
+    this.currentPlayer = this.players[this.playerTurn];
+  }
+}

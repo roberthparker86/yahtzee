@@ -183,4 +183,8 @@ class Dice {
         return this.valuesArray.reduce((total, nextNum) => total+nextNum, 0);
     }
   }
+
+  checkCanRoll() {
+    return this.rollCount <= 3;
+  }
 };

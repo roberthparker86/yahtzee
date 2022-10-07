@@ -1,63 +1,28 @@
-/*jshint esversion: 6 */
-$(function() { 
+document.addEventListener('DOMContentLoaded', () => {
+  const state = new GameState();
+  const diceCtrl = new Dice();
+  const playerOne = new Scoreboard('player', diceCtrl),
+    messageModal = new ModalController(document.querySelector('.modal__window'), state),
+    computer = new Scoreboard('computer', diceCtrl);
 
-  // Controls for the score buttons
-	const checkHold = (elem) => $(elem).hasClass("hold");
+  playerOne.generateScoreboard(messageModal);
+  computer.generateScoreboard(messageModal);
 
-	const checkRoundZero = () => round === 0;
+  const rollBtnSelector = document.querySelector('aside button');
+  rollBtnSelector.addEventListener('click', () => {
+    if (diceCtrl.checkCanRoll()) {
+      diceCtrl.rollHand();
+    } else {
+      messageModal.open('No more rolls!');
+    }    
+  });
 
-  // Pops up message window with passed string
-	const message = (string) => { 
-		$(".modal-body").text(string);
-		setTimeout( () => {
-			modal.show();
-		}, 20);
-	};
-
-	const reducePlayerScoreValues = () => {
-		const scoresArray = [];
-
-		for (const prop in playerScoreValues) {
-			prop !== 'total' && scoresArray.push(playerScoreValues[prop]);
-		}
-
-		return scoresArray.reduce((a,b) => a + b);
-	};
-
-	const setScore = (elem) => {
-
-		/** Get a "value" ID from the clicked button ID to be used for updating both
-		 *  the scoreObject and relevant scoreboard value html element
-		 */ 
-		const scoreValueElementId = `${elem.id}-value`;
-
-		// Set current dice score based on button clicked
-		const value = scoreCalc[elem.id]();
-
-		// Use scoreValueElementId to update proper slot on playScoreValues
-		playerScoreValues[scoreValueElementId] = value;
-		playerScoreValues['total'] = reducePlayerScoreValues();
-
-		// Update the scorboard
-		populatePlayerScores();
-
-		/** Update Total HTML element with new score. Add hold class to clicked element
-		 *	Change player turn over to computer
-		 */
-		$(elem).addClass("hold");
-		plyrTurn++;
-		setTimeout(plyrCheck, 500);
-	};
-
-	const handleScoreClick = (elem) => { // If problem display message otherwise set score on scoreboard
-		checkHold(elem) ? 
-			message("This category has been used. Pick another.") : checkRoundZero() ?
-				message("Roll dice to begin game!") : setScore(elem);
-	};
-
-	//  Bind event handler to score buttons
-	$(".score-btn").on("click", function() { 
-		handleScoreClick(this);
-	});
-
+  const diceSelector = document.querySelectorAll('i.dice');
+  diceSelector.forEach(die => {
+    die.addEventListener('click', function() {
+      this.classList.contains('hold')
+        ? this.classList.remove('hold')
+        : this.classList.add('hold');
+    });
+  });
 });
