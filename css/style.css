@@ -206,7 +206,11 @@ article div.scoreboard__board div.scoreboard__btn-container button {
   transition: all 0.25s ease-in-out;
   width: 75%;
 }
-article div.scoreboard__board div.scoreboard__btn-container button:hover {
+article div.scoreboard__board div.scoreboard__btn-container button:disabled {
+  background-color: #9c2f49;
+  cursor: default;
+}
+article div.scoreboard__board div.scoreboard__btn-container button:hover:not(:disabled) {
   background-color: #F1EEE9;
   color: #F5557B;
   filter: drop-shadow(0 0 0.25rem #F5557B) drop-shadow(0 0 0.5rem #FF879A);

@@ -51,8 +51,10 @@ class Scoreboard {
    */
   updateScore(category, score) {
     this[category].value = score;
-    const updateElem = document.querySelector(`#${this[category].id}-value`);
+    const updateElem = document.querySelector(`#${this[category].id}-value`),
+      clickedBtn = document.querySelector(`#${this[category].id}`);
     updateElem.innerHTML = score;
+    clickedBtn.setAttribute('disabled', true);
   }
 
   generateScoreboardHeader() {
@@ -80,6 +82,7 @@ class Scoreboard {
     newBtnElem.innerHTML = btnTemplate;
 
     // Score Btn click events
+    // PICK BACK UP HERE. MAYBE EVENTLISTENER DOESN'T NEED TO BE ADDED AT OBJECT INIT. BUTTON CLICK CAN GET ID THAT THEN PASSES TO NECESSARY CALLS
     newBtnElem.addEventListener('click', () => {
       const newValue = this.diceCtrl.getScore(category);
       this.updateScore(category, newValue);

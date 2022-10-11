@@ -67,7 +67,12 @@ article {
         transition: all .25s ease-in-out;
         width: 75%;
 
-        &:hover {
+        &:disabled {
+          background-color: desaturate(darken($color-red, 25%), 35%);
+          cursor: default;
+        }
+
+        &:hover:not(:disabled) {
           background-color: $color-white;
           color: $color-red;
           filter: 
