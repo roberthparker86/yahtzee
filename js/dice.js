@@ -148,7 +148,6 @@ class Dice {
   }
 
   getScore (category) {
-    console.log({ valuesArray: this.valuesArray, sorted: this.getSortedSetArray(this.valuesArray)});
 
     switch (category) {
       case 'one':

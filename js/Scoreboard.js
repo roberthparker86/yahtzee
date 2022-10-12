@@ -45,6 +45,19 @@ class Scoreboard {
     setTimeout(() => reveal.setHidden(false), 400);
   }
 
+  /** 
+   * @param {String} id - id of score button clicked
+   * @returns {String} - key for accessing relevant Scoreboard property
+   */
+  getKey(id) {
+    for (const key in this) {
+      if (this[key].id === id) {
+        return key;
+      }
+    }
+    return null;
+  }
+
   /**
    * @param {String} category = selector for score category property
    * @param {Number} score = Value to upate specified category to in the DOM 
@@ -73,25 +86,19 @@ class Scoreboard {
    * @param {String} category = Selector for category property 
    * @returns {HTMLElement} = adds element to DOM and returns the selector variable
    */
-  generateBtn(category, modalControl) {
+  generateBtn(category) {
     const newBtnElem = document.createElement('div');
     newBtnElem.classList.add('scoreboard__btn-container');
+
     const btnTemplate = `<button id="${this[category].id}" data-score-key="${category}" data-player="${this.name}" class="score-btn">${this[category].btnText}</button>
       <h3 id="${this[category].id}-value">${this[category].value}</h3>`;
 
     newBtnElem.innerHTML = btnTemplate;
-
-    // Score Btn click events
-    // PICK BACK UP HERE. MAYBE EVENTLISTENER DOESN'T NEED TO BE ADDED AT OBJECT INIT. BUTTON CLICK CAN GET ID THAT THEN PASSES TO NECESSARY CALLS
-    newBtnElem.addEventListener('click', () => {
-      const newValue = this.diceCtrl.getScore(category);
-      this.updateScore(category, newValue);
-      modalControl.open('Computer turn.');
-    });
     return newBtnElem;
   }
 
-  generateScoreboard(modalControl) {
+  // Initialize Scoreboard. Generate and append HTML
+  generateScoreboard() {
     this.parentContainer.append(this.generateScoreboardHeader());
 
     let boardBtnsContainerElem = document.createElement('div');
@@ -103,7 +110,7 @@ class Scoreboard {
         key.toString() !== 'name' && key.toString() !== 'total' &&
         key.toString() !== 'parentContainer' && key.toString() !== 'diceCtrl'
       ) {
-        boardBtnsContainerElem.append(this.generateBtn(key.toString(), modalControl));
+        boardBtnsContainerElem.append(this.generateBtn(key.toString()));
       }
     }
 
