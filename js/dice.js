@@ -48,6 +48,10 @@ class Dice {
       
   }
 
+  resetRollCount() {
+    this.rollCount = 0;
+  }
+
   // Roll new hand
   rollHand () {
     let diceRollCounts = 0;
@@ -62,6 +66,7 @@ class Dice {
         Dice.rollDie(currentDiceObj, 4);
         diceRollCounts++;
       } else {
+        currentDiceObj.rollCount++;
         clearInterval(diceRollInterval);
       }
     }  

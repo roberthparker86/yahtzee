@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // START BACK HERE. ABLE TO ROLL MORE THAN THREE TIMES.
   rollBtnSelector.addEventListener('click', () => {
+    console.log(diceCtrl.checkCanRoll(), diceCtrl.rollCount);
     if (diceCtrl.checkCanRoll()) {
       diceCtrl.rollHand();
     } else {
