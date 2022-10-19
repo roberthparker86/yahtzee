@@ -309,6 +309,7 @@ section.modal__backdrop.open {
 }
 .modal__window .modal__close-btn:hover {
   color: #F1EEE9;
+  cursor: pointer;
   filter: drop-shadow(0 0 0.25rem #F5557B) drop-shadow(0 0 0.5rem #FF879A);
 }
 .modal__window .modal__message {

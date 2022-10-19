@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   playerOne.generateScoreboard();
   computer.generateScoreboard();
+  state.addPlayer(playerOne);
+  state.addPlayer(computer);
 
   // Set up Roll Button functionality
   const rollBtnSelector = document.querySelector('aside button');
 
-  // START BACK HERE. ABLE TO ROLL MORE THAN THREE TIMES.
   rollBtnSelector.addEventListener('click', () => {
     console.log(diceCtrl.checkCanRoll(), diceCtrl.rollCount);
     if (diceCtrl.checkCanRoll()) {
@@ -35,6 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set event listeners for player score buttons
   const playerScoreBtns = document.querySelectorAll('#player .score-btn');
 
+  // Implement close modal and side effects
+  messageModal.closeBtn.addEventListener('click', () => {
+    messageModal.close();
+    if (messageModal.getMessageEventType() === 'changeTurn') {
+      state.changeTurn();
+      messageModal.setMessageEventType(null);
+      console.log({
+        state,
+        messageModal
+      });
+    }
+  })
+
   playerScoreBtns.forEach(elem => {
     elem.addEventListener('click', function(){
       const clickedElemID = this.id,
@@ -44,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (scoreCategory !== null) {
         playerOne.updateScore(scoreCategory, newScoreVal);
         messageModal.open('Computer turn.');
+        messageModal.setMessageEventType('changeTurn');
       } else {
         messageModal.open("ERROR! It's game over man, GAME OVER!");
       }      

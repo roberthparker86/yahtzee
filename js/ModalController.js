@@ -4,10 +4,15 @@ class ModalController {
     this.modalBG = modalWindow.previousElementSibling;
     this.closeBtn = this.modalWindow.children[0];
     this.modalMessage = modalWindow.children[1];
+    this.messageEventType = null;
+  }
 
-    this.closeBtn.addEventListener('click', () => {
-      this.close(true);
-    });
+  getMessageEventType() {
+    return this.messageEventType;
+  }
+  
+  setMessageEventType(str) {
+    this.messageEventType = str;
   }
 
   open(message) {
