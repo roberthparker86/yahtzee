@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (messageModal.getMessageEventType() === 'changeTurn') {
       state.changeTurn();
       messageModal.setMessageEventType(null);
+      Scoreboard.switchScoreboards(playerOne, computer);
       console.log({
         state,
         messageModal
