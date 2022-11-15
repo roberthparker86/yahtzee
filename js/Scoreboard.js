@@ -45,6 +45,11 @@ class Scoreboard {
     setTimeout(() => reveal.setHidden(false), 400);
   }
 
+  checkIsBtnDisabled (btnCat) {
+    const btnSelector = document.getElementById(this[btnCat].id);
+    return btnSelector.disabled;
+  }
+
   /** 
    * @param {String} id - id of score button clicked
    * @returns {String} - key for accessing relevant Scoreboard property

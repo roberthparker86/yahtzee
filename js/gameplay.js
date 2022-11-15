@@ -5,6 +5,31 @@ document.addEventListener('DOMContentLoaded', () => {
     messageModal = new ModalController(document.querySelector('.modal__window'), state),
     computer = new Scoreboard('computer', diceCtrl);
 
+  function computerTurn() {
+    function tryToScoreMajorHand () {      
+      if (diceCtrl.checkYahtzee() && !computer.checkIsBtnDisabled('yahtzee')) {
+        computer.updateScore('yahtzee');
+      } else if (diceCtrl.checkLargeStraight() && !computer.checkIsBtnDisabled('largeStraight')) {
+        computer.updateScore('largeStraight');
+      } else if (diceCtrl.checkSmallStraight() && !computer.checkIsBtnDisabled('smallStraight')) {
+        computer.updateScore('smallStraight');
+      } else if (diceCtrl.checkFullHouse() && !computer.checkIsBtnDisabled('fullHouse')) {
+        computer.updateScore('fullHouse');
+      } else if (diceCtrl.checkFourKind() && !computer.checkIsBtnDisabled('fourOfKind')) {
+        computer.updateScore('fourOfKind');
+      } else if (diceCtrl.checkThreeKind() && !computer.checkIsBtnDisabled('threeOfKind')) {
+        computer.updateScore('threeOfKind');
+      } else if (!computer.checkIsBtnDisabled('any')) {
+        computer.updateScore('any');
+      } else {
+        return false;
+      }
+      return true;
+    }
+    
+    diceCtrl.rollHand();
+  }
+
   playerOne.generateScoreboard();
   computer.generateScoreboard();
   state.addPlayer(playerOne);
@@ -14,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const rollBtnSelector = document.querySelector('aside button');
 
   rollBtnSelector.addEventListener('click', () => {
-    console.log(diceCtrl.checkCanRoll(), diceCtrl.rollCount);
     if (diceCtrl.checkCanRoll()) {
       diceCtrl.rollHand();
     } else {
@@ -39,14 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Implement close modal and side effects
   messageModal.closeBtn.addEventListener('click', () => {
     messageModal.close();
+
     if (messageModal.getMessageEventType() === 'changeTurn') {
       state.changeTurn();
       messageModal.setMessageEventType(null);
-      Scoreboard.switchScoreboards(playerOne, computer);
-      console.log({
-        state,
-        messageModal
+
+      diceSelector.forEach(die => {
+        if (die.classList.contains('hold')) {
+          die.classList.remove('hold');
+        }
       });
+
+      Scoreboard.switchScoreboards(playerOne, computer);
     }
   })
 
