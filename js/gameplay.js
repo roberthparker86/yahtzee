@@ -6,28 +6,41 @@ document.addEventListener('DOMContentLoaded', () => {
     computer = new Scoreboard('computer', diceCtrl);
 
   function computerTurn() {
-    function tryToScoreMajorHand () {      
-      if (diceCtrl.checkYahtzee() && !computer.checkIsBtnDisabled('yahtzee')) {
-        computer.updateScore('yahtzee');
-      } else if (diceCtrl.checkLargeStraight() && !computer.checkIsBtnDisabled('largeStraight')) {
-        computer.updateScore('largeStraight');
-      } else if (diceCtrl.checkSmallStraight() && !computer.checkIsBtnDisabled('smallStraight')) {
-        computer.updateScore('smallStraight');
-      } else if (diceCtrl.checkFullHouse() && !computer.checkIsBtnDisabled('fullHouse')) {
-        computer.updateScore('fullHouse');
-      } else if (diceCtrl.checkFourKind() && !computer.checkIsBtnDisabled('fourOfKind')) {
-        computer.updateScore('fourOfKind');
-      } else if (diceCtrl.checkThreeKind() && !computer.checkIsBtnDisabled('threeOfKind')) {
-        computer.updateScore('threeOfKind');
+    function checkScoreMajorHand () {      
+      if (diceCtrl.checkYahtzee(diceCtrl.valuesArray) && !computer.checkIsBtnDisabled('yahtzee')) {
+        return 'yahtzee';
+      } else if (diceCtrl.checkLargeStraight(diceCtrl.valuesArray) && !computer.checkIsBtnDisabled('largeStraight')) {
+        return 'largeStraight';
+      } else if (diceCtrl.checkSmallStraight(diceCtrl.valuesArray) && !computer.checkIsBtnDisabled('smallStraight')) {
+        return 'smallStraight';
+      } else if (diceCtrl.checkFullHouse(diceCtrl.valuesArray) && !computer.checkIsBtnDisabled('fullHouse')) {
+        return 'fullHouse';
+      } else if (diceCtrl.checkFourKind(diceCtrl.valuesArray) && !computer.checkIsBtnDisabled('fourOfKind')) {
+        return 'fourOfKind';
+      } else if (diceCtrl.checkThreeKind(diceCtrl.valuesArray ) && !computer.checkIsBtnDisabled('threeOfKind')) {
+        return 'threeOfKind';
       } else if (!computer.checkIsBtnDisabled('any')) {
-        computer.updateScore('any');
-      } else {
-        return false;
+        return 'any';
       }
-      return true;
+      return null;
     }
-    
+
     diceCtrl.rollHand();
+    
+    while (checkScoreMajorHand() === null && checkCanRoll()) {
+      setTimeout(() => diceCtrl.rollHand(), 1000);
+    };
+
+    if (checkScoreMajorHand() !== null) {
+      setTimeout(() => {
+        const btnToClickID = computer[checkScoreMajorHand()].id,
+        btnToClickSelector = document.getElementById(btnToClickID);
+
+        btnToClickSelector.click();
+
+        console.log('%cGame state: ', 'color: orange', state);
+      }, 1000);      
+    }
   }
 
   playerOne.generateScoreboard();
@@ -58,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Set event listeners for player score buttons
-  const playerScoreBtns = document.querySelectorAll('#player .score-btn');
+  const playerScoreBtns = document.querySelectorAll('#player .score-btn'),
+    computerScoreBtns = document.querySelectorAll('#computer .score-btn');
 
   // Implement close modal and side effects
   messageModal.closeBtn.addEventListener('click', () => {
@@ -75,6 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       Scoreboard.switchScoreboards(playerOne, computer);
+
+      console.log('%cCurrent Player', 'color: pink', state.currentPlayer);
+
+      if (state.currentPlayer.name === 'computer') {
+        setTimeout(() => computerTurn(), 1000);
+      }
     }
   })
 
@@ -88,6 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
         playerOne.updateScore(scoreCategory, newScoreVal);
         messageModal.open('Computer turn.');
         messageModal.setMessageEventType('changeTurn');
+      } else {
+        messageModal.open("ERROR! It's game over man, GAME OVER!");
+      }      
+    });
+  });
+
+  computerScoreBtns.forEach(elem => {
+    elem.addEventListener('click', function(){
+      const clickedElemID = this.id,
+        scoreCategory = computer.getKey(clickedElemID),
+        newScoreVal = diceCtrl.getScore(scoreCategory);
+
+      if (scoreCategory !== null) {
+        computer.updateScore(scoreCategory, newScoreVal);
+        messageModal.open('Player 1 turn.');
+        messageModal.setMessageEventType('changeTurn');
+        setTimeout(() => messageModal.closeBtn.click(), 3000);
       } else {
         messageModal.open("ERROR! It's game over man, GAME OVER!");
       }      
