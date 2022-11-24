@@ -39,6 +39,39 @@ document.addEventListener('DOMContentLoaded', () => {
         btnToClickSelector.click();
 
         console.log('%cGame state: ', 'color: orange', state);
+      }, 1000); 
+
+    } else {
+      setTimeout(() => {
+        const lowerScoreMap = {
+          '1': 'one',
+          '2': 'two',
+          '3': 'three',
+          '4': 'four',
+          '5': 'five',
+          '6': 'six'
+        };
+  
+        let highestCount = 0,
+          highestScoreCat;
+  
+        for (let i = 1, end = 7; i < end; i++ ) {
+          if (!computer.checkIsBtnDisabled(lowerScoreMap(i.toString()))) {
+            let count = diceCtrl.valuesArray.filter(value => value === i).length;
+            console.log('%cCount', 'color: cyan', count);
+  
+            if (count > highestCount) {
+              highestCount = count;
+              highestScoreCat = i.toString();
+            }
+          } 
+        }
+  
+        const btnToClickID = computer[lowerScoreMap[highestScoreCat]].id,
+          btnToClickSelector = document.getElementById(btnToClickID);
+  
+        btnToClickSelector.click();
+        console.log('%cGame state: ', 'color: orange', state);
       }, 1000);      
     }
   }
@@ -88,7 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      Scoreboard.switchScoreboards(playerOne, computer);
+      if (state.currentPlayer.name === 'player') {
+        Scoreboard.switchScoreboards(computer, playerOne);
+      } else {
+        Scoreboard.switchScoreboards(playerOne, computer);
+      }      
 
       console.log('%cCurrent Player', 'color: pink', state.currentPlayer);
 

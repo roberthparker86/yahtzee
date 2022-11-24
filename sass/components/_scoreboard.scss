@@ -35,6 +35,10 @@ article {
       margin-right: $sp-lg;
       width: 5.5rem;
     }
+
+    & h2 {
+      text-transform: capitalize;
+    }
   }
 
   & div.scoreboard__board {

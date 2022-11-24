@@ -176,6 +176,9 @@ article div.scoreboard__header img.icons {
   margin-right: 1.5rem;
   width: 5.5rem;
 }
+article div.scoreboard__header h2 {
+  text-transform: capitalize;
+}
 article div.scoreboard__board {
   align-items: center;
   display: flex;
