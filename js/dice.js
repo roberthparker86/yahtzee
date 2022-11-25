@@ -48,6 +48,17 @@ class Dice {
       
   }
 
+  setToDefault() {
+    const diceContainer = document.querySelectorAll('.fas.dice');
+
+    diceContainer.forEach(die => {
+      die.classList.replace(die.classList[2], this.one);
+    });
+
+    this.valuesArray = [1,1,1,1,1];
+    this.resetRollCount();
+  }
+
   resetRollCount() {
     this.rollCount = 0;
   }

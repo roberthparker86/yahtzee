@@ -133,6 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => computerTurn(), 1000);
       }
     }
+
+    if (messageModal.getMessageEventType() === 'gameOver') {
+      const winner = playerOne.total.value > computer.total.value
+        ? playerOne
+        : computer;
+      messageModal.open(`<span style='text-transform: capitalize'>${winner}</span> is the winner with a score of ${winner.total.value}!`);
+    }
   })
 
   playerScoreBtns.forEach(elem => {

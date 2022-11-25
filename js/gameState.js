@@ -2,7 +2,14 @@ class GameState {
   constructor() {
     this.players = [];
     this.playerTurn = 0;
-    this.round = 0;
+    this.round = 1;
+    this.currentPlayer = null;
+  }
+  
+  setToDefault () {
+    this.players = [];
+    this.playerTurn = 0;
+    this.round = 1;
     this.currentPlayer = null;
   }
 

@@ -45,6 +45,26 @@ class Scoreboard {
     setTimeout(() => reveal.setHidden(false), 400);
   }
 
+  setToDefault () {
+    for (const key in this) {
+      switch (key) {
+        case 'name':
+          break;
+        case 'parentContainer':
+          break;
+        case 'diceCtrl':
+          break;
+        default:
+          const btn = document.getElementById(this[key].id),
+            btnValue = document.getElementById(`${this[key].id}-value`);
+
+          btn.setAttribute('disabled', true);
+          this[key].value = 0;
+          btnValue.innerHTML = this[key].value;                   
+      }
+    }
+  }
+
   checkIsBtnDisabled (btnCat) {
     const btnSelector = document.getElementById(this[btnCat].id);
     return btnSelector.disabled;
