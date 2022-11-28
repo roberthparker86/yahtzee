@@ -135,12 +135,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (messageModal.getMessageEventType() === 'gameOver') {
+      messageModal.displayPlayAgainBtn();
       const winner = playerOne.total.value > computer.total.value
         ? playerOne
         : computer;
       messageModal.open(`<span style='text-transform: capitalize'>${winner}</span> is the winner with a score of ${winner.total.value}!`);
     }
-  })
+  });
+
+  // On play again reset for new game.
+  messageModal.playAgainBtn.addEventListener('click', () => {
+    messageModal.hidePlayAgainBtn();
+    messageModal.close();
+    playerOne.setToDefault();
+    computer.setToDefault();
+    diceCtrl.setToDefault();
+    state.setToDefault();
+    Scoreboard.switchScoreboards(computer, playerOne);
+  });
 
   playerScoreBtns.forEach(elem => {
     elem.addEventListener('click', function(){

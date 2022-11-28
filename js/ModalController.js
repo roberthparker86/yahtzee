@@ -4,6 +4,7 @@ class ModalController {
     this.modalBG = modalWindow.previousElementSibling;
     this.closeBtn = this.modalWindow.children[0];
     this.modalMessage = modalWindow.children[1];
+    this.playAgainBtn = modalWindow.children[2];
     this.messageEventType = null;
   }
 
@@ -35,5 +36,13 @@ class ModalController {
       this.modalBG.classList.add('d-none');
       this.modalWindow.classList.add('d-none');
     }, 20);
+  }
+
+  displayPlayAgainBtn() {
+    this.playAgainBtn.classList.contains('game-over__false') && this.playAgainBtn.classList.remove('game-over__false');
+  }
+
+  hidePlayAgainBtn() {
+    !this.playAgainBtn.classList.contains('game-over__false') && this.playAgainBtn.classList.add('game-over__false');
   }
 }
