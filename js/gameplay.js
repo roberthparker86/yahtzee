@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const winner = playerOne.total.value > computer.total.value
         ? playerOne
         : computer;
-      messageModal.open(`<span style='text-transform: capitalize'>${winner}</span> is the winner with a score of ${winner.total.value}!`);
+      messageModal.open(`<span style='text-transform: capitalize'>${winner.name}</span> is the winner with a score of ${winner.total.value}!`);
     }
   });
 
